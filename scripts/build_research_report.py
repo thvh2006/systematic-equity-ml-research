@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Generate the research paper, decision memo and charts from saved artifacts."""
-import hashlib,json,math,re,sys
+import hashlib,json,math,re,sys,os
 from pathlib import Path
 from xml.sax.saxutils import escape
 from reportlab.lib import colors
@@ -9,29 +9,45 @@ from reportlab.lib.enums import TA_LEFT
 from reportlab.lib.units import inch
 from reportlab.platypus import SimpleDocTemplate,Paragraph,Spacer,Table,TableStyle,PageBreak,KeepTogether
 from reportlab.graphics.shapes import Drawing,PolyLine,Line,String,Rect
-from reportlab.graphics import renderSVG
+from reportlab.graphics import renderSVG,renderPDF
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+from docx.oxml import OxmlElement
+from docx.oxml.ns import qn
 from docx import Document
 from docx.shared import Inches,Pt,RGBColor
 R=Path(__file__).resolve().parents[1];OUT=R/'reports/results';OUT.mkdir(parents=True,exist_ok=True)
 B=json.loads((R/'artifacts/research/public_bundle.json').read_text());A=B['analysis'];CHOSEN=B['selected'];U=B['uncertainty']
-NAVY=colors.HexColor('#163346');TEAL=colors.HexColor('#087E8B');PALETTE=['#8B6BAE','#BE7837','#718384','#087E8B','#2E5791']
+# One-size academic typography in the report, figures, tables and page numbers.
+FONT_DIR=Path(os.environ.get('P2_TIMES_FONT_DIR','/System/Library/Fonts/Supplemental'))
+for name,filename in [('TimesNewRoman','Times New Roman.ttf'),('TimesNewRoman-Bold','Times New Roman Bold.ttf'),('TimesNewRoman-Italic','Times New Roman Italic.ttf'),('TimesNewRoman-BoldItalic','Times New Roman Bold Italic.ttf')]:
+ pdfmetrics.registerFont(TTFont(name,str(FONT_DIR/filename)))
+pdfmetrics.registerFontFamily('TimesNewRoman',normal='TimesNewRoman',bold='TimesNewRoman-Bold',italic='TimesNewRoman-Italic',boldItalic='TimesNewRoman-BoldItalic')
+NAVY=TEAL=colors.black;PALETTE=['#000000','#444444','#777777','#999999','#222222']
+
 def pct(x):return f'{100*x:.2f}%'
 def table_results():
- return [['Strategy','CAGR','Volatility','Sharpe*','Max DD','Final NAV']]+[[n,pct(v['metrics']['cagr']),pct(v['metrics']['annual_volatility']),f"{v['metrics']['sharpe_zero_cash']:.2f}",pct(v['metrics']['max_drawdown']),f"${v['metrics']['final_nav']:,.0f}"] for n,v in B['results'].items()]
+ labels={'equal_weight':'Equal weight','momentum_63':'Momentum','inverse_vol':'Inverse volatility','stumps_24':'Selected ML','SPY_buy_hold':'SPY buy and hold'}
+ return [['Strategy','CAGR','Volatility','Sharpe*','Max DD','Final NAV']]+[[labels.get(n,n),pct(v['metrics']['cagr']),pct(v['metrics']['annual_volatility']),f"{v['metrics']['sharpe_zero_cash']:.2f}",pct(v['metrics']['max_drawdown']),f"${v['metrics']['final_nav']:,.0f}"] for n,v in B['results'].items()]
 def chart(kind):
- d=Drawing(480,220);series={}
+ d=Drawing(495,282);series={}
  for name,result in B['results'].items():
-  if kind=='NAV':ys=[100000]+[x['nav'] for x in result['ledger']]
-  else:ys=[0]+[x['drawdown']*100 for x in A['strategies'][name]['daily']]
+  ys=([100000]+[x['nav'] for x in result['ledger']]) if kind=='NAV' else ([0]+[x['drawdown']*100 for x in A['strategies'][name]['daily']])
   series[name]=ys
  lo=min(min(y) for y in series.values());hi=max(max(y) for y in series.values());span=hi-lo or 1
- d.add(String(5,208,'Saved test: '+('net NAV ($)' if kind=='NAV' else 'drawdown (%)'),fontSize=10,fillColor=NAVY))
+ d.add(String(0,268,'Saved test: '+('net NAV ($)' if kind=='NAV' else 'drawdown (%)'),fontName='TimesNewRoman',fontSize=12))
  for j in range(5):
-  y=40+j*36;value=lo+j*span/4;d.add(Line(55,y,475,y,strokeColor=colors.HexColor('#E4EBEF')));d.add(String(2,y-3,f'{value:,.0f}',fontSize=7))
+  y=100+j*36;value=lo+j*span/4;d.add(Line(62,y,490,y,strokeColor=colors.HexColor('#dddddd')));d.add(String(0,y-4,f'{value:,.0f}',fontName='TimesNewRoman',fontSize=12))
+ labels={'equal_weight':'Equal weight','momentum_63':'Momentum (63 sessions)','inverse_vol':'Inverse volatility','stumps_24':'Selected ML (24 stumps)','SPY_buy_hold':'SPY buy and hold'}
  for i,(name,ys) in enumerate(series.items()):
   pts=[]
-  for j,y in enumerate(ys):pts.extend([55+j/(len(ys)-1)*420,40+(y-lo)/span*144])
-  d.add(PolyLine(pts,strokeColor=colors.HexColor(PALETTE[i]),strokeWidth=1.1));d.add(String(5+(i%3)*155,17-(i//3)*11,name,fontSize=7,fillColor=colors.HexColor(PALETTE[i])))
+  for j,y in enumerate(ys):pts.extend([62+j/(len(ys)-1)*428,100+(y-lo)/span*144])
+  dash=[[],[5,3],[2,2],[7,2,2,2],[10,3]][i]
+  d.add(PolyLine(pts,strokeColor=colors.HexColor(PALETTE[i]),strokeWidth=1.1,strokeDashArray=dash))
+  x=(i%2)*250;y=67-(i//2)*20
+  d.add(Line(x,y+3,x+23,y+3,strokeColor=colors.HexColor(PALETTE[i]),strokeDashArray=dash))
+  d.add(String(x+29,y,labels.get(name,name.replace('_',' ')),fontName='TimesNewRoman',fontSize=12))
+ d.add(String(62,82,'Jan 2023',fontName='TimesNewRoman',fontSize=12));d.add(String(433,82,'Dec 2025',fontName='TimesNewRoman',fontSize=12))
  return d
 
 SECTIONS=[
@@ -106,48 +122,106 @@ REFERENCES=[
  ('S7','Yahoo Finance. Historical data tables. Private capture receipt; example XLK page.','https://finance.yahoo.com/quote/XLK/history/')]
 
 def styles():
- s=getSampleStyleSheet();s.add(ParagraphStyle(name='BodyResearch',fontName='Helvetica',fontSize=10.2,leading=15,spaceAfter=12,textColor=NAVY));s['Heading1'].textColor=NAVY;s['Heading1'].fontSize=20;s['Heading1'].leading=25;s['Heading2'].textColor=TEAL;return s
+ s=getSampleStyleSheet()
+ for name in ['Normal','Title','Heading1','Heading2']:
+  q=s[name];q.fontName='TimesNewRoman-Bold' if name!='Normal' else 'TimesNewRoman';q.fontSize=12;q.leading=18;q.textColor=colors.black;q.spaceAfter=12;q.alignment=TA_LEFT
+ s.add(ParagraphStyle(name='BodyResearch',fontName='TimesNewRoman',fontSize=12,leading=18,spaceAfter=12,textColor=colors.black))
+ s.add(ParagraphStyle(name='TableResearch',parent=s['BodyResearch'],leading=15,spaceAfter=0))
+ s.add(ParagraphStyle(name='TableHeading',parent=s['TableResearch'],fontName='TimesNewRoman-Bold'))
+ s.add(ParagraphStyle(name='Reference',parent=s['BodyResearch'],leftIndent=18,firstLineIndent=-18))
+ return s
 S=styles()
 def P(t,style='BodyResearch'):return Paragraph(escape(t),S[style])
 def T(rows,widths=None):
- rows=[[P(str(x)) for x in row] for row in rows];t=Table(rows,colWidths=widths,repeatRows=1,hAlign='LEFT');t.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),colors.HexColor('#E4F0F3')),('VALIGN',(0,0),(-1,-1),'TOP'),('LINEBELOW',(0,0),(-1,0),1,TEAL),('LINEBELOW',(0,1),(-1,-1),.3,colors.HexColor('#D7E1E5')),('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),7)]));return t
+ rows=[[P(str(x),'TableHeading' if i==0 else 'TableResearch') for x in row] for i,row in enumerate(rows)]
+ t=Table(rows,colWidths=widths,repeatRows=1,hAlign='LEFT',spaceAfter=10);t.setStyle(TableStyle([('VALIGN',(0,0),(-1,-1),'TOP'),('LINEABOVE',(0,0),(-1,0),.7,colors.black),('LINEBELOW',(0,0),(-1,0),.7,colors.black),('LINEBELOW',(0,-1),(-1,-1),.7,colors.black),('LEFTPADDING',(0,0),(-1,-1),5),('RIGHTPADDING',(0,0),(-1,-1),5),('TOPPADDING',(0,0),(-1,-1),6),('BOTTOMPADDING',(0,0),(-1,-1),6)]));return t
 def footer(canvas,doc):
- canvas.setFont('Helvetica',8);canvas.setFillColor(colors.HexColor('#587180'));canvas.drawString(48,28,'P2 • Retrospective exploratory research • 25 November 2026');canvas.drawRightString(548,28,str(doc.page))
+ canvas.setFont('TimesNewRoman',12);canvas.setFillColor(colors.black);canvas.drawCentredString(297.5,28,str(doc.page))
+def word_table(doc,rows):
+ tb=doc.add_table(rows=0,cols=len(rows[0]));tb.autofit=False
+ for i,row in enumerate(rows):
+  cells=tb.add_row().cells
+  if len(row)==6:
+   for cell,width in zip(cells,[112,69,83,66,72,93]):cell.width=Pt(width)
+  no_split=OxmlElement('w:cantSplit');tb.rows[-1]._tr.get_or_add_trPr().append(no_split)
+  for cell,text in zip(cells,row):
+   cell.text=str(text)
+   for paragraph in cell.paragraphs:
+    paragraph.paragraph_format.line_spacing=1.0
+    for run in paragraph.runs:run.font.name='Times New Roman';run.font.size=Pt(12);run.bold=(i==0)
+  if i==0:
+   repeat=OxmlElement('w:tblHeader');tb.rows[0]._tr.get_or_add_trPr().append(repeat)
+ return tb
+
 def main():
  abstract='A bounded six-candidate learning study compares monthly allocation among nine US sector ETFs with simple baselines. Using a saved development choice and a 2023–2025 test, the selected 24-stump model earns 12.41% CAGR after assumed costs, below momentum (13.19%) and equal-weight (14.16%). Its average paired monthly difference versus momentum is negative and its block-bootstrap interval includes zero. A further-session fill delay reverses rankings, underscoring implementation sensitivity. The retrospective result does not support trading promotion. Frozen hashes, self-financing accounting and independent review examples support reproducibility; corrected source data, fixed-fund selection, idealised execution and limited observations restrict inference.'
  story=[P('Does bounded ML improve sector ETF allocation?','Title'),P('A retrospective, cost-aware study of nine US sector funds','Heading2'),P('thvh2006 | Research release 0.3.0 | 25 November 2026'),P('Abstract','Heading2'),P(abstract),T([['Data','Development','Saved test'],['2017–2025','2020–2022','2023–2025 / 36 months']]),Spacer(1,14),P('Decision: no trading promotion','Heading2'),P(B['conclusion']),PageBreak()]
  for i,(heading,paragraphs) in enumerate(SECTIONS):
   story.append(P(heading,'Heading1'))
   for t in paragraphs:story.append(P(t))
-  if i==7:story.extend([Spacer(1,6),T(table_results(),[130,65,65,60,65,90])])
-  if i<len(SECTIONS)-1:story.append(PageBreak())
- story.extend([PageBreak(),P('Appendix A. Saved NAV and drawdown','Heading1'),chart('NAV'),Spacer(1,20),chart('DD'),P('Both figures use the same saved, costed test ledger. The starting point is included. Price returns and unpaid distributions are accounted for in NAV; these are hypothetical portfolios.')])
+  if i==7:story.extend([Spacer(1,6),P('Table 1. Saved primary test performance.'),T(table_results(),[112,69,83,66,72,93]),P('Note: Sharpe uses zero cash yield. All values are hypothetical and include assumed trading costs.')])
+
+ story.extend([PageBreak(),P('Appendix A. Saved NAV and drawdown','Heading1'),P('Figure A1. Net asset value, including initial capital.'),chart('NAV'),Spacer(1,12),P('Figure A2. Drawdown from the running peak.'),chart('DD'),P('Both figures use the same saved, costed test ledger. The starting point is included. Price returns and unpaid distributions are accounted for in NAV; these are hypothetical portfolios.')])
  attribution=[['Fund','ML net P&L ($)','Mean ML market weight']]+[[k,f'{v:,.2f}',pct(A['strategies'][CHOSEN]['mean_weights'][k])] for k,v in A['strategies'][CHOSEN]['cumulative_net_pnl_by_asset'].items()]
- story.extend([PageBreak(),P('Appendix B. Fund contribution and feature map','Heading1'),T(attribution,[120,160,195]),Spacer(1,15),P('Net P&L contributions sum to ending NAV minus initial capital. Contributions include fees and slippage through executed cash flows. They are not Brinson allocation/selection effects.'),T([['Feature','Definition']]+list(A['feature_register'].items()),[145,330])])
+ story.extend([PageBreak(),P('Appendix B. Fund contribution and feature map','Heading1'),P('Table B1. Selected ML fund contribution and average market weight.'),T(attribution,[120,160,195]),Spacer(1,15),P('Net P&L contributions sum to ending NAV minus initial capital. Contributions include fees and slippage through executed cash flows. They are not Brinson allocation/selection effects.'),P('Table B2. Feature definitions.'),T([['Feature','Definition']]+list(A['feature_register'].items()),[145,330])])
  story.extend([PageBreak(),P('Appendix C. References and reproduction','Heading1')])
- for k,t,url in REFERENCES:story.extend([P(k+' — '+t),Paragraph(f'<link href="{escape(url)}" color="#087E8B">Source link</link>',S['BodyResearch'])])
+ for k,t,url in REFERENCES:story.append(Paragraph(escape('['+k+'] '+t)+' '+f'<link href="{escape(url)}" color="#000000">'+escape(url)+'</link>',S['Reference']))
  story.append(P('Reproduction: start at README.md, run scripts/verify_release.py, scripts/run_checks.py and node scripts/check_research_dashboard.cjs. Full training requires private source inputs. Original saved result hash: '+hashlib.sha256((R/'artifacts/research/locked.json').read_bytes()).hexdigest()))
  pdf=R/'deliverables/P2_Research_Paper.pdf';SimpleDocTemplate(str(pdf),pagesize=(595,842),leftMargin=48,rightMargin=48,topMargin=47,bottomMargin=47,title='P2: Bounded ML and Sector ETF Allocation',author='thvh2006').build(story,onFirstPage=footer,onLaterPages=footer)
  lines=['# Does bounded ML improve sector ETF allocation?','','thvh2006 · 25 November 2026','','## Abstract',abstract,'']
- for h,pp in SECTIONS:lines+=['## '+h,'']+sum(([t,''] for t in pp),[])
+ for h,pp in SECTIONS:
+  lines+=['## '+h,'']+sum(([t,''] for t in pp),[])
+  if h.startswith('8.'):
+   rows=table_results();lines+=['Table 1. Saved primary test performance.','','| '+' | '.join(rows[0])+' |','| '+' | '.join(['---']*len(rows[0]))+' |']+['| '+' | '.join(row)+' |' for row in rows[1:]]+['','Note: Sharpe uses zero cash yield. All values are hypothetical and include assumed trading costs.','']
+ lines+=['## Appendix A. Saved NAV and drawdown','','![Figure A1. Net asset value](figures/locked_nav.svg)','','![Figure A2. Drawdown](figures/locked_dd.svg)','']
  lines+=['## References','']+[f'- [{k}] {t} [Source]({url})' for k,t,url in REFERENCES]
  (OUT/'P2_Research_Paper.md').write_text('\n'.join(lines)+'\n')
- doc=Document();sec=doc.sections[0];sec.top_margin=Inches(.75);sec.bottom_margin=Inches(.75);doc.styles['Normal'].font.name='Calibri';doc.styles['Normal'].font.size=Pt(11)
- doc.add_heading('Does bounded ML improve sector ETF allocation?',0);doc.add_paragraph('thvh2006 | 25 November 2026 | Retrospective research');doc.add_heading('Abstract',1);doc.add_paragraph(abstract)
- for h,pp in SECTIONS:
+ doc=Document();sec=doc.sections[0]
+ sec.page_width=Pt(595);sec.page_height=Pt(842)
+ sec.top_margin=sec.bottom_margin=sec.left_margin=sec.right_margin=Pt(48)
+ for sty in doc.styles:
+  if sty.type in (1,2):
+   sty.font.name='Times New Roman';sty.font.size=Pt(12);sty.font.color.rgb=RGBColor(0,0,0)
+   sty.element.get_or_add_rPr().rFonts.set(qn('w:eastAsia'),'Times New Roman')
+  for border in list(sty.element.iter(qn('w:pBdr'))):border.getparent().remove(border)
+ for name in ['Normal','Title','Subtitle','Heading 1','Heading 2','Caption']:
+  sty=doc.styles[name];sty.font.name='Times New Roman';sty.font.size=Pt(12);sty.paragraph_format.line_spacing=1.5;sty.paragraph_format.space_after=Pt(12)
+ for name in ['Title','Heading 1','Heading 2']:doc.styles[name].font.bold=True
+ doc.add_heading('Does bounded ML improve sector ETF allocation?',0);doc.add_paragraph('A retrospective, cost-aware study of nine US sector funds');doc.add_paragraph('thvh2006 | 25 November 2026 | Retrospective research');doc.add_heading('Abstract',1);doc.add_paragraph(abstract)
+ word_table(doc,[['Data','Development','Saved test'],['2017-2025','2020-2022','2023-2025 / 36 months']])
+ doc.add_heading('Decision: no trading promotion',1);doc.add_paragraph(B['conclusion']);doc.add_page_break()
+ for j,(h,pp) in enumerate(SECTIONS):
   doc.add_heading(h,1)
   for t in pp:doc.add_paragraph(t)
   if h.startswith('8.'):
-   tb=doc.add_table(rows=1,cols=6);tb.style='Light Shading Accent 1'
-   for i,v in enumerate(table_results()[0]):tb.rows[0].cells[i].text=v
-   for row in table_results()[1:]:
-    for c,v in zip(tb.add_row().cells,row):c.text=v
- doc.add_heading('References',1)
- for k,t,url in REFERENCES:doc.add_paragraph(f'[{k}] {t} {url}')
+   doc.add_paragraph('Table 1. Saved primary test performance.');word_table(doc,table_results());doc.add_paragraph('Note: Sharpe uses zero cash yield. All values are hypothetical and include assumed trading costs.')
+
+ doc.add_heading('Appendix A. Saved NAV and drawdown',1).paragraph_format.page_break_before=True
+ import io,pypdfium2
+ for kind,caption in [('NAV','Figure A1. Net asset value, including initial capital.'),('DD','Figure A2. Drawdown from the running peak.')]:
+  doc.add_paragraph(caption);chartpdf=pypdfium2.PdfDocument(renderPDF.drawToString(chart(kind)));image=chartpdf[0].render(scale=2).to_pil();buf=io.BytesIO();image.save(buf,format='PNG');buf.seek(0);doc.add_picture(buf,width=Pt(495));picp=doc.paragraphs[-1];picp.paragraph_format.line_spacing=1.0;picp.paragraph_format.space_after=Pt(0)
+ doc.add_paragraph('Both figures use the saved costed ledger and initial capital. Results are hypothetical.')
+ doc.add_heading('Appendix B. Fund contribution and feature map',1).paragraph_format.page_break_before=True
+ doc.add_paragraph('Table B1. Selected ML fund contribution and average market weight.');word_table(doc,attribution)
+ doc.add_paragraph('Net P&L contributions sum to ending NAV minus initial capital. Contributions include fees and slippage through executed cash flows. They are not Brinson allocation/selection effects.')
+ doc.add_paragraph('Table B2. Feature definitions.');word_table(doc,[['Feature','Definition']]+list(A['feature_register'].items()))
+ doc.add_heading('Appendix C. References and reproduction',1).paragraph_format.page_break_before=True
+ for k,t,url in REFERENCES:
+  pp=doc.add_paragraph(f'[{k}] {t} {url}');pp.paragraph_format.left_indent=Inches(.25);pp.paragraph_format.first_line_indent=Inches(-.25)
+ doc.add_paragraph('Reproduction: start at README.md, run scripts/verify_release.py, scripts/run_checks.py and node scripts/check_research_dashboard.cjs. Full training requires private source inputs. Original saved result hash: '+hashlib.sha256((R/'artifacts/research/locked.json').read_bytes()).hexdigest())
+ foot=sec.footer.paragraphs[0];foot.alignment=1;field=OxmlElement('w:fldSimple');field.set(qn('w:instr'),'PAGE');fr=OxmlElement('w:r');ft=OxmlElement('w:t');ft.text='1';fr.append(ft);field.append(fr);foot._p.append(field)
+ for para in doc.paragraphs:
+  if para.text.startswith(('Table ','Figure ')):para.paragraph_format.keep_with_next=True
+ for root in [doc.styles.element,doc.element,sec.footer.part.element]:
+  for el in root.iter():
+   if el.tag in [qn('w:sz'),qn('w:szCs')]:el.set(qn('w:val'),'24')
+   if el.tag==qn('w:rFonts'):
+    for attr in list(el.attrib):del el.attrib[attr]
+    for key in ['ascii','hAnsi','eastAsia','cs']:el.set(qn('w:'+key),'Times New Roman')
  doc.save(R/'deliverables/P2_Research_Paper.docx')
- memo=[P('P2 | Research decision memo','Title'),P('25 November 2026 · Fixed sector ETF allocation · Retrospective','Heading2'),P('Decision: retain the evidence; withhold trading promotion','Heading1'),P('The development-selected ML model does not establish incremental economic value. In the saved primary test it trails both momentum and equal-weight, has greater drawdown and negative mean rank IC. Model selection itself does not justify replacing a baseline.'),T(table_results(),[130,65,65,60,65,90]),Spacer(1,15),P('What was tested','Heading2'),P('Nine selected US sector ETFs; monthly top-three allocation for ML and momentum; four baseline policies; six bounded ML candidates. Development 2020–2022; saved test 2023–2025. Base assumptions: $100,000, 1 bp fee and 5 bp adverse slippage per side, whole shares, prior-session volume caps and zero cash yield.'),P('What the uncertainty means','Heading2'),P(f"ML minus momentum mean monthly difference: {U['mean_monthly_net_difference']*100:.4f} percentage points. Descriptive 95% circular block-bootstrap interval: [{U['ci95_low']*100:.4f}, {U['ci95_high']*100:.4f}] percentage points, 36 months. It includes zero and does not prove equivalent strategies."),PageBreak(),P('Implementation and release conditions','Heading1'),P('Primary execution is next-session opening marks. An additional-session delay improves ML CAGR to 15.83% and lowers momentum to 11.54%. This reversal reveals timing dependence. Do not adopt the delayed rule based on this test; it needs a new, independently evaluated study.'),P('Costs and risk','Heading2'),P('ML CAGR falls from 13.07% at zero costs to 11.11% at triple base costs. Equal-weight is less cost-sensitive because it trades less. Daily volume does not establish opening-auction liquidity; target sizing at the open remains idealised.'),P('Evidence that can be checked','Heading2'),P('Saved hashes, full candidate register, ledger and order history, dated fit windows, five-strategy P&L attribution, 22 engineering tests, eight research notebooks, a recalculated Excel sample and an interactive snapshot dashboard. The paper explains source semantics, economic choices and limits.'),P('Boundaries','Heading2'),P('Corrected and rounded source history; fixed selected fund universe; changing sector definitions; no institutional execution validation or full selection-bias correction. A saved local freeze is not independent preregistration. Public verification works from derived artifacts; raw provider inputs remain private.'),P('Forward status','Heading2'),P('Historical snapshot ends 2025-12-31. The current monitor must remain blocked for stale data. Published forward signals: 0; realised forward sessions: 0. No current trading recommendation, broker connection or scheduled refresh is claimed.'),P('Next admissible decision','Heading2'),P('Use the completed study as a research portfolio artifact. Consider another study only with a defined economic hypothesis and new evaluation budget. A live process requires a permitted current feed, execution calibration, approval and prospectively timestamped records.')]
+ memo=[P('P2 | Research decision memo','Title'),P('25 November 2026 · Fixed sector ETF allocation · Retrospective','Heading2'),P('Decision: retain the evidence; withhold trading promotion','Heading1'),P('The development-selected ML model does not establish incremental economic value. In the saved primary test it trails both momentum and equal-weight, has greater drawdown and negative mean rank IC. Model selection itself does not justify replacing a baseline.'),T(table_results(),[112,69,83,66,72,93]),Spacer(1,15),P('What was tested','Heading2'),P('Nine selected US sector ETFs; monthly top-three allocation for ML and momentum; four baseline policies; six bounded ML candidates. Development 2020–2022; saved test 2023–2025. Base assumptions: $100,000, 1 bp fee and 5 bp adverse slippage per side, whole shares, prior-session volume caps and zero cash yield.'),P('What the uncertainty means','Heading2'),P(f"ML minus momentum mean monthly difference: {U['mean_monthly_net_difference']*100:.4f} percentage points. Descriptive 95% circular block-bootstrap interval: [{U['ci95_low']*100:.4f}, {U['ci95_high']*100:.4f}] percentage points, 36 months. It includes zero and does not prove equivalent strategies."),PageBreak(),P('Implementation and release conditions','Heading1'),P('Primary execution is next-session opening marks. An additional-session delay improves ML CAGR to 15.83% and lowers momentum to 11.54%. This reversal reveals timing dependence. Do not adopt the delayed rule based on this test; it needs a new, independently evaluated study.'),P('Costs and risk','Heading2'),P('ML CAGR falls from 13.07% at zero costs to 11.11% at triple base costs. Equal-weight is less cost-sensitive because it trades less. Daily volume does not establish opening-auction liquidity; target sizing at the open remains idealised.'),P('Evidence that can be checked','Heading2'),P('Saved hashes, full candidate register, ledger and order history, dated fit windows, five-strategy P&L attribution, 22 engineering tests, eight research notebooks, a recalculated Excel sample and an interactive snapshot dashboard. The paper explains source semantics, economic choices and limits.'),P('Boundaries','Heading2'),P('Corrected and rounded source history; fixed selected fund universe; changing sector definitions; no institutional execution validation or full selection-bias correction. A saved local freeze is not independent preregistration. Public verification works from derived artifacts; raw provider inputs remain private.'),P('Forward status','Heading2'),P('Historical snapshot ends 2025-12-31. The current monitor must remain blocked for stale data. Published forward signals: 0; realised forward sessions: 0. No current trading recommendation, broker connection or scheduled refresh is claimed.'),P('Next admissible decision','Heading2'),P('Use the completed study as a research portfolio artifact. Consider another study only with a defined economic hypothesis and new evaluation budget. A live process requires a permitted current feed, execution calibration, approval and prospectively timestamped records.')]
  SimpleDocTemplate(str(R/'deliverables/P2_Decision_Memo.pdf'),pagesize=(595,842),leftMargin=48,rightMargin=48,topMargin=45,bottomMargin=45).build(memo,onFirstPage=footer,onLaterPages=footer)
- (OUT/'P2_Decision_Memo.md').write_text('# Decision: no trading promotion\n\n'+B['conclusion']+'\n\nSee `deliverables/P2_Decision_Memo.pdf` for the two-page decision record and `P2_Research_Paper.md` for the full technical narrative.\n')
+ (OUT/'P2_Decision_Memo.md').write_text('# Decision: no trading promotion\n\n'+B['conclusion']+'\n\nSee `deliverables/P2_Decision_Memo.pdf` for the decision record and `P2_Research_Paper.md` for the full technical narrative.\n')
  fig=OUT/'figures';fig.mkdir(exist_ok=True)
  for kind in ['NAV','DD']:renderSVG.drawToFile(chart(kind),str(fig/f'locked_{kind.lower()}.svg'))
  print(json.dumps({'paper_words':len(re.findall(r'\S+',' '.join(t for _,pp in SECTIONS for t in pp))),'report':str(pdf),'sections':len(SECTIONS)}))
