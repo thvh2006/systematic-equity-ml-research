@@ -5,7 +5,7 @@
   "files": [
     {
       "path": ".github/workflows/verify.yml",
-      "sha256": "3eb64c1c5c157a65ff5d42856e5a5cb5d3a8874a55c39d8a9f8521f047b12b23",
+      "sha256": "c7f080744ae1e86783eab7ee744245ed204d529f3f4c9aa4bc135a2d1a7cf511",
       "bytes": 609
     },
     {
@@ -20,8 +20,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "02c55e33c5ff37877b85e5262570f18a1994533cfc03f28d42df572415ae0fc9",
-      "bytes": 6238
+      "sha256": "b9d2c847a8b03fec9f8b95ac788fa1681a59ec451c8edd14f59d53682c486611",
+      "bytes": 6578
     },
     {
       "path": "artifacts/paper/events.jsonl",
@@ -35,8 +35,8 @@
     },
     {
       "path": "artifacts/research/delivery_audit.json",
-      "sha256": "617f1b42260e35f6637d903b9e2e00bbb0d3bc34e561a93f144cdb720a1dc9bd",
-      "bytes": 2357
+      "sha256": "515bdc0dca1ecb83035c2f687151ca3499bfece70a3ce8249f9f1ee481cd2704",
+      "bytes": 2394
     },
     {
       "path": "artifacts/research/development.json",
@@ -80,8 +80,8 @@
     },
     {
       "path": "dashboard/research.html",
-      "sha256": "b6fb0fcc93a74b50db9b7fb9f205c912028a673cd47d74dbc97c4d21a60681d1",
-      "bytes": 18655
+      "sha256": "4479d4b33f633ad95f7cb4f7b5dd75f5a00296caf87b71736323680093dcf447",
+      "bytes": 18973
     },
     {
       "path": "dashboard/template.html",
@@ -130,13 +130,13 @@
     },
     {
       "path": "deliverables/P2_Systematic_Equity_Research.html",
-      "sha256": "935bc7dc6d12ce1a02ed53bc873349685bbee1f649a93834e0214fe57cc9d2dd",
-      "bytes": 3771782
+      "sha256": "82498e954c01c8caf1ab769473d296e70f71c82e773f080d9c3274bd07c9b03a",
+      "bytes": 3772100
     },
     {
       "path": "deliverables/P2_Systematic_Equity_Research.xlsx",
-      "sha256": "389d162e81a7766d4e8f08d071c103802dd791991c34aa7765d237a99f0148c7",
-      "bytes": 283689
+      "sha256": "a8f3561289e6ce757879434fba669759f858b6c1abc0b00d6d35a3e66347b5ea",
+      "bytes": 283922
     },
     {
       "path": "docs/DATA_ACCESS.md",
@@ -195,8 +195,8 @@
     },
     {
       "path": "index.html",
-      "sha256": "935bc7dc6d12ce1a02ed53bc873349685bbee1f649a93834e0214fe57cc9d2dd",
-      "bytes": 3771782
+      "sha256": "82498e954c01c8caf1ab769473d296e70f71c82e773f080d9c3274bd07c9b03a",
+      "bytes": 3772100
     },
     {
       "path": "notebooks/01_market_data_and_universe_audit.ipynb",
@@ -315,8 +315,8 @@
     },
     {
       "path": "scripts/check_research_dashboard.cjs",
-      "sha256": "e9b2d2f6e8069da02c4e60dedd2facd3e3999f527a78d73ed92a8a7aa10c1c5a",
-      "bytes": 2921
+      "sha256": "6a6c86f5e324040499392c8651581edcf606224556bb3c1301dc42eb7e76d6d7",
+      "bytes": 3063
     },
     {
       "path": "scripts/complete_research.py",
@@ -342,6 +342,11 @@
       "path": "scripts/paper_monitor.py",
       "sha256": "66d7ba56bf7ddc840ba3b9625dad57164beed01feb9aa8ea5eae297fe6b5352f",
       "bytes": 1569
+    },
+    {
+      "path": "scripts/polish_workbook.py",
+      "sha256": "595e972e837af08a1741d10b7d0d02be026f15f2036813f3f29b98323783cc74",
+      "bytes": 1913
     },
     {
       "path": "scripts/prepare_release.py",

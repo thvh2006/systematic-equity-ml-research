@@ -2,6 +2,8 @@
 
 **Does bounded machine learning improve monthly sector ETF allocation after costs?**
 
+[Launch dashboard](https://thvh2006.github.io/systematic-equity-ml-research/) · [GitHub verification](https://github.com/thvh2006/systematic-equity-ml-research/actions/workflows/verify.yml)
+
 A completed retrospective research case with a negative comparative result: the development-selected ML model does not establish an advantage over momentum or equal-weight in the primary 2023–2025 test. Original code, an auditable ledger, a bounded trial register and review deliverables make that conclusion inspectable.
 
 | Primary saved test | Net CAGR | Sharpe, cash = 0 | Maximum drawdown |
@@ -20,7 +22,7 @@ These are hypothetical results after assumed 1 bp fees and 5 bp adverse slippage
 | [Research paper: PDF](deliverables/P2_Research_Paper.pdf) · [DOCX](deliverables/P2_Research_Paper.docx) · [Markdown](reports/results/P2_Research_Paper.md) | 16-page technical narrative, method, test results, diagnostics and limitations |
 | [Two-page decision memo](deliverables/P2_Decision_Memo.pdf) | Decision and implementation conditions |
 | [Excel review](deliverables/P2_Systematic_Equity_Research.xlsx) | 19 sheets, editable first-rebalance formulas and independent return checks |
-| [Interactive dashboard](index.html) | Eight views: data, validation, backtest, holdings, costs, uncertainty and paper readiness |
+| [Interactive dashboard](https://thvh2006.github.io/systematic-equity-ml-research/) | Eight views: data, validation, backtest, holdings, costs, uncertainty and paper readiness |
 | [Eight research notebooks](notebooks) | Executed walkthrough from source audit to stale-data controls |
 | [Attribution](artifacts/research/sector_attribution.csv) · [Trial register](reports/plan/trial_register.csv) | All six candidates and fund-level P&L contribution |
 | [Protocol](docs/PROTOCOL_FREEZE.md) · [Sources](docs/SOURCES_AND_LIMITATIONS.md) · [Model card](docs/MODEL_CARD.md) | What was frozen, assumptions and appropriate interpretation |
@@ -63,7 +65,7 @@ python -m pip install -e '.[delivery]'
 python scripts/build_research_report.py
 ```
 
-`build_complete_delivery.py` creates formulas without cached results. Recalculate its output in a spreadsheet application before distributing it. The release workbook was recalculated with LibreOffice and checked independently. Native Microsoft Excel review is recorded separately in the release receipt.
+`build_complete_delivery.py` creates formulas without cached results. Run `python scripts/polish_workbook.py` for wrapping, numeric formats and scenario-input validation. Recalculate its output in a spreadsheet application before distributing it. The release workbook was recalculated with LibreOffice and checked independently. Native Microsoft Excel review is recorded separately in the release receipt.
 
 ## Forward status and boundaries
 
