@@ -31,9 +31,12 @@
     "invalid_inputs_rejected": true
   },
   "pdf": {
-    "paper_pages": 16,
+    "paper_pages": 11,
     "memo_pages": 2,
-    "visual_review": "Report cover/results and memo rendered; results page inspected"
+    "visual_review": "All report and memo pages rendered and reviewed after academic formatting revision",
+    "font": "Embedded Times New Roman",
+    "text_size_pt": 12,
+    "body_line_spacing": 1.5
   },
   "browser_review": {
     "url": "https://thvh2006.github.io/systematic-equity-ml-research/",
@@ -61,7 +64,22 @@
   },
   "frozen_locked_sha256": "41b2a895595358e68b724dc20c1bec5dbfc93506b98046b80b1a6b4da4e513a1",
   "public_evidence_checks_with_manifest": {
-    "passed": 158,
-    "total": 158
+    "passed": 159,
+    "total": 159
+  },
+  "reporting_revision": {
+    "date": "2026-11-25",
+    "scope": "Report formatting, editable-document appendix parity, report dependencies and review documentation; no model/data/config changes",
+    "tests_passed": 22,
+    "public_verifier_before_changes": 158,
+    "notebooks_executed": 8,
+    "code_cells": 31,
+    "javascript_checks": "8 views, 10 strategy/chart combinations, 3 independent scenarios, invalid inputs rejected",
+    "locked_sha256_preserved": "41b2a895595358e68b724dc20c1bec5dbfc93506b98046b80b1a6b4da4e513a1",
+    "docx_render": "Bundled LibreOffice; rendered pagination may differ from canonical PDF",
+    "docx_pages_bundled_render": 12,
+    "all_docx_explicit_font_sizes_pt": 12,
+    "all_canonical_pdf_visible_text_sizes_pt": 12,
+    "report_figures_and_tables_in_word": true
   }
 }

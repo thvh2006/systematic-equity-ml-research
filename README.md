@@ -19,7 +19,7 @@ These are hypothetical results after assumed 1 bp fees and 5 bp adverse slippage
 
 | Artifact | Purpose |
 |---|---|
-| [Research paper: PDF](deliverables/P2_Research_Paper.pdf) · [DOCX](deliverables/P2_Research_Paper.docx) · [Markdown](reports/results/P2_Research_Paper.md) | 16-page technical narrative, method, test results, diagnostics and limitations |
+| [Research paper: PDF](deliverables/P2_Research_Paper.pdf) · [DOCX](deliverables/P2_Research_Paper.docx) · [Markdown](reports/results/P2_Research_Paper.md) | 11-page academic paper, method, test results, diagnostics and limitations |
 | [Two-page decision memo](deliverables/P2_Decision_Memo.pdf) | Decision and implementation conditions |
 | [Excel review](deliverables/P2_Systematic_Equity_Research.xlsx) | 19 sheets, editable first-rebalance formulas and independent return checks |
 | [Interactive dashboard](https://thvh2006.github.io/systematic-equity-ml-research/) | Eight views: data, validation, backtest, holdings, costs, uncertainty and paper readiness |
@@ -43,7 +43,11 @@ python scripts/run_notebooks.py
 
 The public verifier checks the saved engine/config/development/freeze references, recomputed metrics, monthly returns, P&L identities, exposures, paired bootstrap, trial selection and release-file hashes. A clean checkout can run these checks without private market inputs. Notebook execution uses a sequential Python executor with captured outputs; no claim of native Jupyter-kernel verification is made. To use native Jupyter, install it separately and choose this project environment.
 
+The paper and decision memo use embedded Times New Roman, 12 pt throughout, including headings, tables, figures and page numbers. Body text uses 1.5 line spacing. The editable Word paper includes the figures and appendix tables; pagination can differ by application. Report generation requires locally installed Times New Roman fonts; set `P2_TIMES_FONT_DIR` if they are outside the default macOS font directory. Fonts are not redistributed.
+
 The legacy fictional fixture remains for split, dividend, suspension, delisting, cash-cap and leakage tests. It does not supply any financial result above.
+
+[Independent review, 25 November 2026](docs/REVIEW_2026-11-25.md) records the checks, remaining limits and reporting revisions.
 
 ## Study design
 
