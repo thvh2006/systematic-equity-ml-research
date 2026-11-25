@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "price_convention": "Raw unadjusted open/close plus separate split and cash-dividend events. Never add dividends to an already total-return-adjusted series.",
+  "key": ["date", "asset"],
+  "calendar": "Every declared session/asset requires an explicit row, including suspension and post-delisting rows.",
+  "decision": "Features available through signal close. First fill attempt on the next declared session open, after corporate actions.",
+  "events": {"split_factor": "Integer forward splits only; reverse/fractional actions fail pending cash-in-lieu implementation", "dividend": "Per post-split share, ex-date entitlement before trades", "dividend_pay_date": "Accrue nominal receivable on ex date; cash only on pay date", "delist_cash": "Per held share terminal cash recovery; position closes before trading"},
+  "label": "21-session mark-to-open total economic return after next-session entry; includes dividend entitlements and terminal recovery. Not a promise of executable exit liquidity.",
+  "unexecutable_label_entry": "Label status NO_EXECUTABLE_ENTRY and null target. Track attrition; do not silently coerce to zero.",
+  "unmatured_label": "Null target; excluded from fit until label window closes before signal minus embargo.",
+  "execution": "Whole shares, sells before buys, explicit fees/slippage, cash and volume caps. Unfilled orders expire, no automatic later fill.",
+  "capacity": "Session-volume participation is a coarse fixture capacity check, not evidence of fillable opening-auction liquidity.",
+  "currency": "USD accounting unit in fictional fixture; no real exchange or holiday calendar is represented",
+  "real_data_prerequisites": ["provider adjustment contract", "cash dividend/split/delisting history", "universe membership scope", "session calendar and timestamp convention", "benchmark contract", "usage/redistribution rights"]
+}
