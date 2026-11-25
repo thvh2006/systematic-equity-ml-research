@@ -35,8 +35,8 @@
     },
     {
       "path": "artifacts/research/delivery_audit.json",
-      "sha256": "c09c6182e212524d7e34313c56e727972a685721775c4a653344c656486675bd",
-      "bytes": 1722
+      "sha256": "617f1b42260e35f6637d903b9e2e00bbb0d3bc34e561a93f144cdb720a1dc9bd",
+      "bytes": 2357
     },
     {
       "path": "artifacts/research/development.json",
