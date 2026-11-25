@@ -1,0 +1,27 @@
+{
+  "kind": "synthetic_fixture",
+  "seed": 20261124,
+  "fictional_assets": [
+    "ALFA",
+    "BETA",
+    "DELTA",
+    "EPSI",
+    "ETA",
+    "GAMMA",
+    "THETA",
+    "ZETA"
+  ],
+  "rows": 4000,
+  "sessions": 500,
+  "calendar": "Synthetic weekdays, no exchange-holiday claim",
+  "source": "Locally generated deterministic fixture",
+  "sha256": "b27d170b383e4edd2394e1be4ee2e2ac40d9d2aaafeec4add2d783e326925da3",
+  "provider_contract_verified": false,
+  "corporate_actions_verified": false,
+  "universe_scope_documented": true,
+  "calendar_verified": false,
+  "benchmark_verified": false,
+  "usage_rights_verified": true,
+  "rights_note": "Project-generated fictional fixture. No provider market data is redistributed.",
+  "purpose": "Pipeline/accounting/leakage demonstrations only. No alpha or investment-performance evidence."
+}
