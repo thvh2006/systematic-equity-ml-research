@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 [project]
 name = "systematic-equity-ml-research"
-version = "0.3.0"
+version = "0.4.0"
 description = "Cost-aware sector ETF allocation research with bounded ML, saved tests and auditable accounting"
 requires-python = ">=3.10"
 dependencies = ["numpy>=1.26,<3"]
