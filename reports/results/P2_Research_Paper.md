@@ -69,6 +69,18 @@ The selected ML policy finishes at $141,788.84, while momentum finishes at $144,
 
 This comparison supports a limited rejection of model promotion, not proof that machine learning can never help sector allocation. A different economic question, source dataset, feature family or execution rule would be a new study requiring its own design and evaluation budget. The present result must remain visible rather than be replaced by another search until a chart improves. Reported performance is hypothetical retrospective accounting. It cannot be described as an investor’s realised return or a prospective paper record.
 
+Table 1. Saved primary test performance.
+
+| Strategy | CAGR | Volatility | Sharpe* | Max DD | Final NAV |
+| --- | --- | --- | --- | --- | --- |
+| Equal weight | 14.16% | 12.93% | 1.09 | -15.59% | $148,455 |
+| Momentum | 13.19% | 14.35% | 0.94 | -16.63% | $144,751 |
+| Inverse volatility | 12.37% | 12.36% | 1.01 | -15.30% | $141,642 |
+| Selected ML | 12.41% | 16.66% | 0.79 | -19.94% | $141,789 |
+| SPY buy and hold | 22.39% | 15.05% | 1.42 | -18.31% | $182,758 |
+
+Note: Sharpe uses zero cash yield. All values are hypothetical and include assumed trading costs.
+
 ## 9. Diagnostics, exposure and P&L attribution
 
 The selected model’s mean cross-sectional rank IC over 36 saved eligible monthly diagnostic dates is -0.0271, with sample standard deviation 0.4102. Positive IC occurs on 44.4% of these dates. The mean-to-standard-deviation ratio is reported without annualisation because the forward labels can overlap and the sample is short. A pooled correlation of all fund rows would obscure date dependence. Prediction diagnostics are read after evaluation and do not change the selected model.
@@ -100,6 +112,12 @@ The saved snapshot ends on 31 December 2025. At the release date, 25 November 20
 The repository includes an operational checklist, source-access guide, code, generated engineering fixture, saved development and test outputs, derived diagnostics, an executed notebook sequence, a spreadsheet review and an interactive snapshot explorer. Public verification intentionally works without redistributing raw provider records. Reproducing the original training requires separately obtaining the private inputs under appropriate permissions and following the documented normalisation contract. Refreshing the historical source would create a new dataset version rather than overwrite this saved study.
 
 The final research decision is no promotion of the selected ML policy. The primary specification fails to establish incremental value after costs, prediction IC is weak, drawdown is worse than the main baselines, and delay sensitivity shows material timing dependence. The work still demonstrates data/action engineering, time-ordered model comparison, portfolio accounting and transparent interpretation of an unfavourable result. Future extensions remain new research tasks rather than missing positive findings. The completed retrospective release should be judged by the clarity and reproducibility of that evidence.
+
+## Appendix A. Saved NAV and drawdown
+
+![Figure A1. Net asset value](figures/locked_nav.svg)
+
+![Figure A2. Drawdown](figures/locked_dd.svg)
 
 ## References
 
