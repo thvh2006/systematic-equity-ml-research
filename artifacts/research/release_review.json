@@ -45,7 +45,7 @@
     "mobile_width": 390,
     "mobile_document_width": 390,
     "console_errors_observed": 0,
-    "portfolio_selector_revision": "Added after initial live review; final deployed check recorded separately"
+    "portfolio_selector_revision": "Deployed and verified on HTTPS; direct policy selection updates holdings and attribution"
   },
   "publication": {
     "repository": "https://github.com/thvh2006/systematic-equity-ml-research",
@@ -53,11 +53,15 @@
     "dashboard": "https://thvh2006.github.io/systematic-equity-ml-research/",
     "first_successful_ci_run": "https://github.com/thvh2006/systematic-equity-ml-research/actions/runs/45560642152",
     "first_successful_ci_commit": "18ea71197408bd87fabfd913fba6e920353190a1",
-    "pages_deployment_run": "https://github.com/thvh2006/systematic-equity-ml-research/actions/runs/45560825730"
+    "pages_deployment_run": "https://github.com/thvh2006/systematic-equity-ml-research/actions/runs/45560825730",
+    "final_verified_ci_run": "https://github.com/thvh2006/systematic-equity-ml-research/actions/runs/45561669148",
+    "final_verified_code_commit": "f1c9233a372ce7f8d285c4fc47095cf1d3f5b0fd",
+    "ci_state": "Success; supported action runtimes, no deprecation annotation",
+    "scope": "No model fitting, source/config alteration or holdout reevaluation during reporting/UI release"
   },
   "frozen_locked_sha256": "41b2a895595358e68b724dc20c1bec5dbfc93506b98046b80b1a6b4da4e513a1",
   "public_evidence_checks_with_manifest": {
-    "passed": 157,
-    "total": 157
+    "passed": 158,
+    "total": 158
   }
 }
