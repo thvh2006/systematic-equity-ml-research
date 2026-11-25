@@ -260,8 +260,8 @@
     },
     {
       "path": "notebooks/03_baseline_strategy_research.ipynb",
-      "sha256": "48efc634f21aa1a6df062f770c7f824eb376cc51cef59a00f745c7bbcb606039",
-      "bytes": 129120
+      "sha256": "1a3bbf2655f4cddbbba7b7d44fd4ebc7af15c09e06ba72a45c81d60c9dab3326",
+      "bytes": 129121
     },
     {
       "path": "notebooks/04_temporal_ml_validation.ipynb",
@@ -280,8 +280,8 @@
     },
     {
       "path": "notebooks/07_locked_test_and_attribution.ipynb",
-      "sha256": "4ae211193fa61358a90a9ce550eb7fd4e0931720ef9dae4c54020a1fbed64b25",
-      "bytes": 237472
+      "sha256": "85cb0ba90295deb86bb3d551eef4ffa595cd48aea0c36c31b0e76680f417515b",
+      "bytes": 237475
     },
     {
       "path": "notebooks/08_forward_paper_monitor.ipynb",
@@ -365,8 +365,8 @@
     },
     {
       "path": "scripts/build_review_notebooks.py",
-      "sha256": "70dae32f043d143a8d03a2f36f78c8e14b327259781d5d8500c5c0c8cf9c3d09",
-      "bytes": 15906
+      "sha256": "53c9c8986ae680091fc959cfb0ccc36364cca3e31b687b7201caad91f23afcf4",
+      "bytes": 15907
     },
     {
       "path": "scripts/build_workbook.mjs",
