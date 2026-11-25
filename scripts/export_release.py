@@ -18,7 +18,7 @@ def main():
   if p.suffix in {'.py','.json','.md','.html','.yml','.toml','.txt','.cjs'}:
    text=p.read_text();patterns=[r'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----',r'gh[pousr]_[A-Za-z0-9]{30,}',r'github_pat_[A-Za-z0-9_]{30,}']
    if any(re.search(x,text) for x in patterns):raise SystemExit('Credential-like material detected in '+str(p.relative_to(R)))
- manifest={'version':'0.3.0','scope':'Original source and derived retrospective research; raw provider records excluded','mutable_review_receipt':'artifacts/research/release_review.json is excluded from hashes so post-publication UI/CI observations can be appended','files':[{'path':str(p.relative_to(R)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size} for p in hashfiles]}
+ manifest={'version':'0.4.0','scope':'Original source and derived retrospective research; raw provider records excluded','mutable_review_receipt':'artifacts/research/release_review.json is excluded from hashes so post-publication UI/CI observations can be appended','files':[{'path':str(p.relative_to(R)),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size} for p in hashfiles]}
  (R/'release_manifest.json').write_text(json.dumps(manifest,indent=2)+'\n');files.append(R/'release_manifest.json')
  for p in files:
   q=a.destination/p.relative_to(R);q.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(p,q)

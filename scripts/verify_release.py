@@ -30,6 +30,15 @@ def main():
   checks['independent_rebalance_'+label]=abs(cash-expected['cash'])<1e-7 and abs(cash+mv-expected['nav'])<1e-7
  for n in ['01_market_data_and_universe_audit','02_hypotheses_labels_and_features','03_baseline_strategy_research','04_temporal_ml_validation','05_portfolio_and_execution','06_robustness_and_multiple_testing','07_locked_test_and_attribution','08_forward_paper_monitor']:
   nb=get('notebooks/'+n+'.ipynb');checks['notebook_'+n]=all(x.get('execution_count') and not any(o['output_type']=='error' for o in x['outputs']) for x in nb['cells'] if x['cell_type']=='code')
+ review_path=R/'artifacts/review/polish.json'
+ if review_path.exists():
+  review=get('artifacts/review/polish.json');checks['review_original_locked']=sha('artifacts/research/locked.json')==review['original_locked_sha256']
+  for path,digest in review['sources'].items():checks['review_source_'+path]=sha(path)==digest
+  for name,x in review['comparisons'].items():
+   ml=b['results'][b['selected']];ref=b['results'][name];net=ml['metrics']['final_nav']-ref['metrics']['final_nav'];gross=b['stress'][b['selected']+'__cost0']['final_nav']-b['stress'][name+'__cost0']['final_nav']
+   checks['review_bridge_'+name]=abs(x['net_nav_gap']-net)<1e-7 and abs(x['zero_cost_nav_gap']-gross)<1e-7 and abs(x['differential_friction_effect']-(net-gross))<1e-7
+   checks['review_sector_'+name]=abs(sum(row['difference'] for row in x['sectors'])-net)<1e-6 and all(abs(row['difference']-(a['strategies'][b['selected']]['cumulative_net_pnl_by_asset'][row['asset']]-a['strategies'][name]['cumulative_net_pnl_by_asset'].get(row['asset'],0)))<1e-7 for row in x['sectors'])
+   checks['review_relative_wealth_'+name]=len(x['relative_wealth'])==len(ml['ledger'])+1 and all(row['date']==l['date']==r['date'] and abs(row['relative_wealth']-(l['nav']/r['nav']-1))<1e-12 for row,l,r in zip(x['relative_wealth'][1:],ml['ledger'],ref['ledger']))
  manifest=R/'release_manifest.json'
  if manifest.exists():
   for x in get('release_manifest.json')['files']:checks['sha_'+x['path']]=sha(x['path'])==x['sha256']
