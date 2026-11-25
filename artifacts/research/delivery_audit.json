@@ -1,0 +1,77 @@
+{
+  "checks": {
+    "frozen_engine": true,
+    "frozen_config": true,
+    "frozen_data": true,
+    "frozen_development": true,
+    "freeze_reference": true,
+    "selection": true,
+    "metrics_equal_weight": true,
+    "nav_equal_weight": true,
+    "metrics_momentum_63": true,
+    "nav_momentum_63": true,
+    "metrics_inverse_vol": true,
+    "nav_inverse_vol": true,
+    "metrics_stumps_24": true,
+    "nav_stumps_24": true,
+    "metrics_SPY_buy_hold": true,
+    "nav_SPY_buy_hold": true,
+    "temporal_fits": true,
+    "independent_rebalance_base": true,
+    "independent_rebalance_fee_plus20": true,
+    "independent_rebalance_nav_double": true
+  },
+  "passed": 20,
+  "locked_result_sha256": "41b2a895595358e68b724dc20c1bec5dbfc93506b98046b80b1a6b4da4e513a1",
+  "outputs": [
+    {
+      "path": "deliverables/P2_Systematic_Equity_Research.xlsx",
+      "sha256": "389d162e81a7766d4e8f08d071c103802dd791991c34aa7765d237a99f0148c7",
+      "bytes": 283689
+    },
+    {
+      "path": "deliverables/P2_Systematic_Equity_Research.html",
+      "sha256": "935bc7dc6d12ce1a02ed53bc873349685bbee1f649a93834e0214fe57cc9d2dd",
+      "bytes": 3771782
+    },
+    {
+      "path": "deliverables/P2_Research_Paper.pdf",
+      "sha256": "e474d17888a00fe0ee54fcaea8d565ab7700021f1124b1b2bb3d0203212828a4",
+      "bytes": 94899
+    },
+    {
+      "path": "deliverables/P2_Research_Paper.docx",
+      "sha256": "1c837824ec3497f99c9cd3a512079ff036131da2df39dbd2959cc6e543da5daf",
+      "bytes": 46541
+    },
+    {
+      "path": "deliverables/P2_Decision_Memo.pdf",
+      "sha256": "5bf5d18d5d97121868a969beec1b25e19e49059b0d23320a2581a3842a130c5b",
+      "bytes": 5191
+    }
+  ],
+  "native_excel_recalculation": false,
+  "native_jupyter_kernel": false,
+  "browser_render_review": false,
+  "libreoffice_recalculation": {
+    "sheets": 19,
+    "formula_errors": 0,
+    "first_rebalance_nav_difference": 0,
+    "monthly_return_compounding_max_difference": 3.3306690738754696e-15
+  },
+  "javascript": {
+    "views": 8,
+    "policy_chart_combinations": 10,
+    "independent_rebalance_scenarios": 3,
+    "invalid_input_rejected": true
+  },
+  "unit_checks_passed": 22,
+  "release": "0.3.0",
+  "workbook_sheets": 19,
+  "notebooks": {
+    "research_notebooks": 8,
+    "executed_code_cells": 31,
+    "execution": "sequential Python executor"
+  },
+  "public_checks_before_manifest": 71
+}
