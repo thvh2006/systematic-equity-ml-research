@@ -16,7 +16,7 @@ if 'display_bundle' not in globals():
 b=json.loads((r/'artifacts/research/public_bundle.json').read_text());a=b['analysis']
 p=json.loads((r/'artifacts/review/polish.json').read_text());chosen=b['selected']
 print('Saved test:',b['as_of'],'Selected:',chosen,'Post-study review:',p['review_date'])'''
-def md(text):return dict(cell_type='markdown',metadata={},source=text.replace('$',r'\$').splitlines(True))
+def md(text):return dict(cell_type='markdown',metadata={},source=text.replace('$','USD ').splitlines(True))
 def code(text):return dict(cell_type='code',metadata={},source=text.splitlines(True),execution_count=None,outputs=[])
 def notebook(stem,title,question,parts,conclusion):
  cells=[md('# '+title+'\n\n'+question+'\n\nThis notebook reviews saved retrospective evidence. New descriptive calculations are post-study analysis, not new strategy selection or an untouched test.'),code(SETUP)]
