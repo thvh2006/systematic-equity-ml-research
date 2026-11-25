@@ -89,6 +89,14 @@ The ML return beta relative to the costed SPY path is 0.911, while mean gross eq
 
 The report also presents calendar-year returns, full drawdown paths and mean fund weights. These are descriptive breakdowns of the same saved test, not additional independent tests. Saved stump split counts illustrate which features the fitted models used but are not causal feature importance. No post-test feature ablation, leave-sector-out search or retuning was performed. Such experiments would require a separately labelled development study. The distinction prevents a seemingly richer appendix from silently becoming another test-selection loop.
 
+## 9.1. Post-study explanation of the comparative shortfall
+
+The following decomposition was added after the historical test had been consumed. It describes saved results without changing candidate selection, the policy, the execution rule or the evaluation sample. Every comparison starts with the same $100,000. The zero-cost final-NAV gap plus the differential friction effect equals the costed final-NAV gap. Friction here includes the effect of altered whole-share sizing and compounding; it is not simply the difference between reported fees.
+
+Against momentum, ML trails by $3,045.28 in the archived zero-cost rerun. Differential friction offsets $82.93 of this gap, leaving a $2,962.35 costed shortfall. Thus additional trading costs alone do not explain the primary failure: the shortfall was already present in the zero-cost allocation outcomes. Against equal weight, the zero-cost shortfall is $4,359.58 and differential friction adds a further $2,306.72 disadvantage, producing a $6,666.30 net gap. The importance of friction depends on the comparator.
+
+Fund-level net contribution differences reconcile these gaps. Relative to momentum, XLK contributes about $15,134 less and XLF about $6,370 less, while XLE contributes about $16,365 more. These terms combine different holdings, timing and execution; they are neither a Brinson decomposition nor isolated causal stock-selection effects. ML finishes with 2.05% less wealth than momentum and 4.49% less than equal weight. Winning 20 of 36 individual months against equal weight still does not imply higher terminal compounded wealth. All these views describe the same test and provide no new independent confirmation.
+
 ## 10. Cost and execution-delay challenges
 
 At zero cost the ML CAGR is 13.07%, compared with 13.87% for momentum and 14.20% for equal-weight. At twice base fees and slippage, ML falls to 11.77%; at three times base it falls to 11.11%. Momentum remains ahead in these corresponding cost scenarios. Equal-weight changes much less because it trades less. The selected ML policy’s annualised one-way turnover is approximately 4.85, compared with 5.01 for momentum and 0.32 for equal-weight. Turnover is one half of daily traded raw notional divided by NAV, summed and annualised by session count.
