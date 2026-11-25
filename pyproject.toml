@@ -8,6 +8,6 @@ description = "Cost-aware sector ETF allocation research with bounded ML, saved 
 requires-python = ">=3.10"
 dependencies = ["numpy>=1.26,<3"]
 [project.optional-dependencies]
-delivery = ["openpyxl>=3.1,<4", "reportlab>=4,<5", "python-docx>=1.1,<2"]
+delivery = ["openpyxl>=3.1,<4", "reportlab>=4,<5", "python-docx>=1.1,<2", "pypdfium2>=4,<6"]
 [tool.setuptools.packages.find]
 where = ["src"]
