@@ -43,3 +43,26 @@ def test_ridge_closed_form_has_independent_one_feature_golden_value():
  # Standardised x already has mean0, variance1. Sxy8/(Sxx4+penalty4)=1.
  assert abs(model['coef'][0]-1)<1e-10 and abs(model['intercept'])<1e-10
  assert abs(predict(model,train[-1])-1)<1e-10
+
+def test_future_market_mutation_preserves_selected_stump_fit_scores_and_holdings():
+ from equity_research.learners import fit,predict as model_predict
+ from equity_research.ledger import run_ledger
+ rows=sample();dates,_,_=market_panel(rows);cutoff=230
+ changed=deepcopy(rows)
+ for r in changed:
+  if r['date']>dates[cutoff] and r['active']:
+   r['open']*=1.7;r['close']*=.7;r['volume']*=9
+ spec={'family':'boosted_stumps','n_estimators':24,'learning_rate':.05}
+ def before_cutoff(data):
+  f,l=build_panel(data);train=matured_train(f,l,cutoff,1);model=fit(train,spec)
+  visible=[r for r in f if r['date']==dates[cutoff]]
+  scores={r['asset']:model_predict(model,r) for r in visible}
+  top=sorted(scores,key=lambda k:(-scores[k],k))[:3]
+  # Score at the preceding close, then compare the actual eligible fill at cutoff.
+  prev=cutoff-1;old=fit(matured_train(f,l,prev,1),spec)
+  oldscores={r['asset']:model_predict(old,r) for r in f if r['date']==dates[prev]}
+  chosen=sorted(oldscores,key=lambda k:(-oldscores[k],k))[:3]
+  plan={'signal_date':dates[prev],'fill_date':dates[cutoff],'weights':{k:1/3 for k in chosen}}
+  replay=run_ledger([r for r in data if dates[prev]<=r['date']<=dates[cutoff]],[plan],capacity_lag_sessions=1)
+  return model,scores,top,replay
+ assert before_cutoff(rows)==before_cutoff(changed)
