@@ -80,7 +80,7 @@
     },
     {
       "path": "dashboard/research.html",
-      "sha256": "4479d4b33f633ad95f7cb4f7b5dd75f5a00296caf87b71736323680093dcf447",
+      "sha256": "52c8f84201ff66108590078319a53f1157beb1c60b8bc288722cabbea6faae20",
       "bytes": 18973
     },
     {
@@ -120,17 +120,17 @@
     },
     {
       "path": "deliverables/P2_Research_Paper.docx",
-      "sha256": "1c837824ec3497f99c9cd3a512079ff036131da2df39dbd2959cc6e543da5daf",
+      "sha256": "1e666ef3c209579235063bd094797827140c0e309595147af2511a0215fc74ca",
       "bytes": 46541
     },
     {
       "path": "deliverables/P2_Research_Paper.pdf",
-      "sha256": "e474d17888a00fe0ee54fcaea8d565ab7700021f1124b1b2bb3d0203212828a4",
+      "sha256": "8e3bce4648b74e53b9e88406c08d36bc161568d45306033a39d35fcc51a7fb4b",
       "bytes": 94899
     },
     {
       "path": "deliverables/P2_Systematic_Equity_Research.html",
-      "sha256": "82498e954c01c8caf1ab769473d296e70f71c82e773f080d9c3274bd07c9b03a",
+      "sha256": "fefff3fa8333c325ecaf2dfd5d749040d628f5ad55743a35df3e945bab0857b2",
       "bytes": 3772100
     },
     {
@@ -195,7 +195,7 @@
     },
     {
       "path": "index.html",
-      "sha256": "82498e954c01c8caf1ab769473d296e70f71c82e773f080d9c3274bd07c9b03a",
+      "sha256": "fefff3fa8333c325ecaf2dfd5d749040d628f5ad55743a35df3e945bab0857b2",
       "bytes": 3772100
     },
     {
@@ -260,7 +260,7 @@
     },
     {
       "path": "reports/results/P2_Research_Paper.md",
-      "sha256": "64a3b84cd8006843eb122e044a50461f4ee7da7d667e962aac5af63faf91ad01",
+      "sha256": "45d80305a82dd2adfa1f92b5d3afdec8ba105e8dc585a8b96627da950e32673e",
       "bytes": 22723
     },
     {
@@ -300,7 +300,7 @@
     },
     {
       "path": "scripts/build_research_report.py",
-      "sha256": "7ca2f260c83d9c84bde617a662976cfd846ef32407528c5d1c928291db51dccb",
+      "sha256": "fbecd79c0a5d7322e6a5deff154262b266fb64f0ff223694c11dcb8a1087a231",
       "bytes": 33811
     },
     {
