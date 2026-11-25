@@ -26,13 +26,13 @@
   "outputs": [
     {
       "path": "deliverables/P2_Systematic_Equity_Research.xlsx",
-      "sha256": "389d162e81a7766d4e8f08d071c103802dd791991c34aa7765d237a99f0148c7",
-      "bytes": 283689
+      "sha256": "a8f3561289e6ce757879434fba669759f858b6c1abc0b00d6d35a3e66347b5ea",
+      "bytes": 283922
     },
     {
       "path": "deliverables/P2_Systematic_Equity_Research.html",
-      "sha256": "935bc7dc6d12ce1a02ed53bc873349685bbee1f649a93834e0214fe57cc9d2dd",
-      "bytes": 3771782
+      "sha256": "82498e954c01c8caf1ab769473d296e70f71c82e773f080d9c3274bd07c9b03a",
+      "bytes": 3772100
     },
     {
       "path": "deliverables/P2_Research_Paper.pdf",
@@ -73,5 +73,6 @@
     "executed_code_cells": 31,
     "execution": "sequential Python executor"
   },
-  "public_checks_before_manifest": 71
+  "public_checks_before_manifest": 71,
+  "excel_input_validation_rules": 3
 }
