@@ -1,0 +1,33 @@
+{
+  "status": "REAL_DATA_EXPLORATORY_ONLY",
+  "start": "2017-01-03",
+  "end": "2025-12-31",
+  "audit": {
+    "rows": 22620,
+    "sessions": 2262,
+    "assets": 10,
+    "split_events": 5,
+    "dividend_events": 362,
+    "suspended_rows": 0,
+    "delist_events": 0
+  },
+  "source_history_sha256": "6a9c5b441f99814b1ac14f4bdf535f6affa4ed9f58d6c6dd76678bb5f68e8098",
+  "issuer_file_sha256": "0008b3cc16472d89944e1cf36dced2ec5df5430e07c8731fcf1e38f3dd67774c",
+  "normalized_sha256": "ac571ded2ec9a2cfd510449a4f7d660f470f5dafcc9f157e8317baf8ad75e276",
+  "corporate_action_comparisons": 362,
+  "calendar": "Independent NYSE-rule calendar including 2018/2025 mourning closures; shared SPY sessions reconciled",
+  "precision": "Displayed prices rounded to 0.01; reconstructed pre-split ticks can have 0.02 increments",
+  "volume_policy": "Reported Yahoo volume divided by future split factor, a conservative capacity assumption; volume basis not independently verified",
+  "publication": "Raw provider records private and excluded from GitHub; redistribution permission not established",
+  "usagerights": "Personal research source review; no third-party data license conveyed",
+  "limitations": [
+    "No historical provider-vintage archive; retrospective corrected dataset",
+    "Fixed selected funds, not survivorship-free all-ETF or constant-sector universe",
+    "No independent opening-auction volume or spread history",
+    "No institutional data sign-off"
+  ],
+  "corporate_action_mismatch_count": 1,
+  "split_price_check_count": 5,
+  "resolved_action_discrepancies": 1,
+  "unresolved_action_discrepancies": 0
+}

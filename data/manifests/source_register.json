@@ -1,0 +1,51 @@
+{
+  "reviewed_on": "2026-11-24",
+  "market_snapshot_imported": false,
+  "preferred_case": "US equity-sector ETF monthly rotation, conditional on data contract",
+  "candidate_universe": [
+    "XLB",
+    "XLE",
+    "XLF",
+    "XLI",
+    "XLK",
+    "XLP",
+    "XLU",
+    "XLV",
+    "XLY"
+  ],
+  "universe_frozen": false,
+  "full_universe_inception_verified": false,
+  "source_items": [
+    {
+      "url": "https://www.ssga.com/us/en/individual/etfs/state-street-technology-select-sector-spdr-etf-xlk",
+      "status": "issuer_page_reviewed",
+      "scope": "XLK identity, inception, NAV and data links"
+    },
+    {
+      "url": "https://www.ssga.com/library-content/products/fund-data/etfs/us/navhist-us-en-xlk.xlsx",
+      "status": "link_discovered_binary_not_downloaded",
+      "scope": "NAV, not executable open-price history"
+    },
+    {
+      "url": "https://www.ssga.com/us/en/individual/resources/documents/etf-dividend-distributions",
+      "status": "issuer_page_reviewed_rights_restriction_visible",
+      "scope": "ex-date and payment semantics; no public raw-data redistribution assumed"
+    },
+    {
+      "url": "https://www.vnstocks.com/docs/vnstock_quant/v1/du-lieu/gia-dieu-chinh",
+      "status": "official_docs_reviewed",
+      "scope": "adjusted versus raw input and double-adjustment risk"
+    },
+    {
+      "url": "https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.TimeSeriesSplit.html",
+      "status": "official_docs_reviewed",
+      "scope": "temporal splitting; additional panel/maturity logic implemented locally"
+    },
+    {
+      "url": "https://www.nber.org/system/files/working_papers/w25398/w25398.pdf",
+      "status": "primary_pdf_excerpt_reviewed",
+      "scope": "Initial literature reading only; broad asset-pricing motivation, not evidence for this unrun ETF case"
+    }
+  ],
+  "register_scope": "Historical discovery notes; current saved snapshot acceptance and hashes are in market_receipt.json; current source limitations in docs/SOURCES_AND_LIMITATIONS.md"
+}
