@@ -77,8 +77,8 @@
   },
   "frozen_locked_sha256": "41b2a895595358e68b724dc20c1bec5dbfc93506b98046b80b1a6b4da4e513a1",
   "public_evidence_checks_with_manifest": {
-    "passed": 177,
-    "total": 177
+    "passed": 184,
+    "total": 184
   },
   "reporting_revision": {
     "date": "2026-11-25",
@@ -114,6 +114,12 @@
       "default_nav": 97918.169238186,
       "native_sensitivity_base": 97918.169238186,
       "sensitivity_numeric_check": "Base value matches authoring-engine calculation after native LibreOffice recalculation"
+    },
+    "notebook_display": {
+      "format": "HTML tables and PNG figures generated from SVG calculations",
+      "figures": 6,
+      "currency_markdown_escaped": true,
+      "github_preview": "Pending final recheck after corrected outputs are uploaded"
     }
   }
 }
