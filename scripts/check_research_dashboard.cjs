@@ -7,6 +7,7 @@ const context={document,location:{pathname:'/index.html'}};vm.createContext(cont
 assert.equal(elements.navigation.children.length,8);assert.equal(elements.strategy.children.length,5);
 for(const view of elements.navigation.children){view.listeners.click();assert.equal(view.attributes['aria-selected'],'true')}
 for(const option of elements.strategy.children){elements.strategy.value=option.value;for(const type of ['nav','drawdown']){elements.chartType.value=type;vm.runInContext('backtest()',context);assert.ok(elements.navChart.innerHTML.includes('<polyline'));assert.ok(!elements.navChart.innerHTML.includes('NaN'));assert.ok(elements.navDetail.textContent.includes(option.value));assert.ok(elements.holdings.innerHTML.includes('Cash'))}}
+elements.portfolioStrategy.value='stumps_24';elements.portfolioStrategy.listeners.change();assert.equal(elements.strategy.value,'stumps_24');
 const v=JSON.parse(fs.readFileSync(path.join(root,'artifacts/research/review_case.json')));
 for(const [name,nav,fee,expected] of [['base',v.initial_nav,v.fee_bps,v.python_ledger],['fee_plus20',v.initial_nav,v.fee_bps+20,v.counterfactuals.fee_plus20.ledger],['nav_double',2*v.initial_nav,v.fee_bps,v.counterfactuals.nav_double.ledger]]){
  elements.capital.value=String(nav);elements.fee.value=String(fee);vm.runInContext('lab()',context);
