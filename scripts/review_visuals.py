@@ -25,4 +25,10 @@ def bars(title,labels,values,ylabel='Count'):
 def table(headers,rows):
     def cell(v):return html.escape(str(v))
     return {'text/html':'<table style="border-collapse:collapse;font:14px Arial"><thead><tr>'+''.join('<th style="padding:8px;border-bottom:2px solid #385064;text-align:left">'+cell(v)+'</th>' for v in headers)+'</tr></thead><tbody>'+''.join('<tr>'+''.join('<td style="padding:8px;border-bottom:1px solid #dde3df">'+cell(v)+'</td>' for v in row)+'</tr>' for row in rows)+'</tbody></table>'}
-def figure(svg):return {'image/svg+xml':svg}
+def figure(svg):
+    import hashlib,base64
+    from pathlib import Path
+    cached=Path(__file__).resolve().parents[1]/'artifacts/review/figures'/(hashlib.sha256(svg.encode()).hexdigest()+'.png')
+    if cached.exists():return {'image/png':base64.b64encode(cached.read_bytes()).decode()}
+    return {'image/svg+xml':svg}
+
