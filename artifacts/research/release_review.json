@@ -21,7 +21,8 @@
     "formula_errors": 0,
     "first_rebalance_nav_difference": 0,
     "monthly_compounding_max_difference": 3.3306690738754696e-15,
-    "native_microsoft_excel": "Not verified: native open dialog did not enable the file"
+    "native_microsoft_excel": "Not verified: native open dialog did not enable the file",
+    "input_validation_rules": 3
   },
   "javascript": {
     "views": 8,
@@ -34,10 +35,29 @@
     "memo_pages": 2,
     "visual_review": "Report cover/results and memo rendered; results page inspected"
   },
-  "browser_review": "Awaiting HTTPS publication; local file navigation was not permitted",
+  "browser_review": {
+    "url": "https://thvh2006.github.io/systematic-equity-ml-research/",
+    "all_eight_views_opened": true,
+    "five_policy_selections": true,
+    "calculator_fee_and_capital_scenarios": true,
+    "invalid_capital_rejected": true,
+    "desktop_visual_review": true,
+    "mobile_width": 390,
+    "mobile_document_width": 390,
+    "console_errors_observed": 0,
+    "portfolio_selector_revision": "Added after initial live review; final deployed check recorded separately"
+  },
   "publication": {
     "repository": "https://github.com/thvh2006/systematic-equity-ml-research",
-    "state": "Repository created; upload pending"
+    "state": "Source and evidence committed to main via GitHub web uploads; direct terminal Git transport unavailable due DNS",
+    "dashboard": "https://thvh2006.github.io/systematic-equity-ml-research/",
+    "first_successful_ci_run": "https://github.com/thvh2006/systematic-equity-ml-research/actions/runs/45560642152",
+    "first_successful_ci_commit": "18ea71197408bd87fabfd913fba6e920353190a1",
+    "pages_deployment_run": "https://github.com/thvh2006/systematic-equity-ml-research/actions/runs/45560825730"
   },
-  "frozen_locked_sha256": "41b2a895595358e68b724dc20c1bec5dbfc93506b98046b80b1a6b4da4e513a1"
+  "frozen_locked_sha256": "41b2a895595358e68b724dc20c1bec5dbfc93506b98046b80b1a6b4da4e513a1",
+  "public_evidence_checks_with_manifest": {
+    "passed": 157,
+    "total": 157
+  }
 }
