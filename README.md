@@ -4,6 +4,8 @@
 
 [Launch dashboard](https://thvh2006.github.io/systematic-equity-ml-research/) · [GitHub verification](https://github.com/thvh2006/systematic-equity-ml-research/actions/workflows/verify.yml)
 
+**Review release 0.4.0 · updated 25 November 2026.** [What changed](docs/RELEASE_NOTES.md)
+
 A completed retrospective research case with a negative comparative result: the development-selected ML model does not establish an advantage over momentum or equal-weight in the primary 2023–2025 test. Original code, an auditable ledger, a bounded trial register and review deliverables make that conclusion inspectable.
 
 | Primary saved test | Net CAGR | Sharpe, cash = 0 | Maximum drawdown |
@@ -15,15 +17,21 @@ A completed retrospective research case with a negative comparative result: the 
 
 These are hypothetical results after assumed 1 bp fees and 5 bp adverse slippage per side. The paired monthly ML–momentum interval includes zero. Delaying fills by another session reverses their ranking: an execution-sensitivity warning, not a newly selected strategy.
 
+## Why did ML lag?
+
+Post-study analysis of the same consumed test: against momentum, the zero-cost final-NAV shortfall is **$3,045.28**. Differential friction offsets **$82.93**, leaving a **$2,962.35** costed shortfall. Extra costs alone therefore do not explain this comparison. Against equal weight, both zero-cost outcomes and higher friction contribute to the **$6,666.30** net shortfall.
+
+Fund-level contribution differences reconcile these gaps, but combine holdings, timing and execution. They are not causal skill estimates. Read the new dashboard explanation or [notebook 07](notebooks/07_locked_test_and_attribution.ipynb).
+
 ## Open the evidence
 
 | Artifact | Purpose |
 |---|---|
-| [Research paper: PDF](deliverables/P2_Research_Paper.pdf) · [DOCX](deliverables/P2_Research_Paper.docx) · [Markdown](reports/results/P2_Research_Paper.md) | 11-page academic paper, method, test results, diagnostics and limitations |
+| [Research paper: PDF](deliverables/P2_Research_Paper.pdf) · [DOCX](deliverables/P2_Research_Paper.docx) · [Markdown](reports/results/P2_Research_Paper.md) | 12-page academic paper, method, test results, diagnostics and limitations |
 | [Two-page decision memo](deliverables/P2_Decision_Memo.pdf) | Decision and implementation conditions |
-| [Excel review](deliverables/P2_Systematic_Equity_Research.xlsx) | 19 sheets, editable first-rebalance formulas and independent return checks |
-| [Interactive dashboard](https://thvh2006.github.io/systematic-equity-ml-research/) | Eight views: data, validation, backtest, holdings, costs, uncertainty and paper readiness |
-| [Eight research notebooks](notebooks) | Executed walkthrough from source audit to stale-data controls |
+| [Excel review](deliverables/P2_Systematic_Equity_Research.xlsx) | 19 sheets; formula-linked comparator and fund bridge, relative-wealth chart, first-rebalance formulas and native fee/slippage sensitivity |
+| [Interactive dashboard](https://thvh2006.github.io/systematic-equity-ml-research/) | Nine views, including an interactive explanation of the ML shortfall, fund-contribution differences and independent execution scenarios |
+| [Eight research notebooks](notebooks) | Executed questions, HTML tables, rendered figures and interpretations from source audit to stale-data controls |
 | [Attribution](artifacts/research/sector_attribution.csv) · [Trial register](reports/plan/trial_register.csv) | All six candidates and fund-level P&L contribution |
 | [Protocol](docs/PROTOCOL_FREEZE.md) · [Sources](docs/SOURCES_AND_LIMITATIONS.md) · [Model card](docs/MODEL_CARD.md) | What was frozen, assumptions and appropriate interpretation |
 
@@ -62,7 +70,9 @@ The legacy fictional fixture remains for split, dividend, suspension, delisting,
 
 [Data-access guide](docs/DATA_ACCESS.md) separates public verification from private-input training. Raw Yahoo history and issuer files are excluded; this repository grants no provider-data license. Reproducing intake/training requires separately permitted source inputs. Do not overwrite the saved development, freeze or test. A new dataset/specification needs a separately versioned experiment.
 
-For local delivery builders, install the `delivery` extras. `complete_research.py` and the workbook builder require the private normalised snapshot for their original accounting cross-check; the PDF report can be generated from public saved outputs:
+For local delivery builders, install the `delivery` extras. The current review layer can be rebuilt with `prepare_polish.py`, `build_review_notebooks.py` and `build_polished_dashboard.py` without private data. The workbook polish script uses the artifact authoring runtime and imports the delivered workbook. Older foundation builders are retained as historical tooling; do not run them over the polished release.
+
+For the original delivery workflow, `complete_research.py` and the workbook builder require the private normalised snapshot for their original accounting cross-check; the PDF report can be generated from public saved outputs:
 
 ```sh
 python -m pip install -e '.[delivery]'
@@ -82,3 +92,5 @@ python scripts/paper_monitor.py --check-only
 Published forward signals: 0; realised forward sessions: 0. No broker connection, live feed or scheduled refresh is claimed. [Operations](docs/OPERATIONS.md) explains the conditions required to start prospective paper research.
 
 Fixed-fund selection, changing sector classification, rounded/revised prices, unvalidated opening liquidity, assumed costs, zero cash yield, no separate tax model and 36 test months materially limit inference. A local freeze is not independent preregistration. The result supports **no promotion of this model**; it does not establish a universal conclusion about ML or investment advice.
+
+Generated HTML exports embed saved data for offline review and can be much larger than the authored Python source. `.gitattributes` identifies those exports as generated for GitHub language statistics; the editable dashboard template remains authored source.

@@ -1,19 +1,20 @@
 {
-  "release": "0.3.0",
+  "release": "0.4.0",
   "reviewed_on": "2026-11-25",
   "unit_checks": {
-    "passed": 22,
-    "total": 22
+    "passed": 23,
+    "total": 23
   },
   "public_evidence_checks_before_manifest": {
-    "passed": 71,
-    "total": 71
+    "passed": 81,
+    "total": 81
   },
   "notebooks": {
     "count": 8,
-    "code_cells": 31,
+    "code_cells": 35,
     "execution": "Sequential Python executor",
-    "native_jupyter_kernel": false
+    "native_jupyter_kernel": false,
+    "rich_outputs": true
   },
   "excel": {
     "sheets": 19,
@@ -22,16 +23,28 @@
     "first_rebalance_nav_difference": 0,
     "monthly_compounding_max_difference": 3.3306690738754696e-15,
     "native_microsoft_excel": "Not verified: native open dialog did not enable the file",
-    "input_validation_rules": 3
+    "input_validation_rules": 3,
+    "review_polish": {
+      "comparator_bridges": 2,
+      "relative_wealth_chart": true,
+      "native_two_input_data_table": true,
+      "default_and_counterfactual_checks": 3,
+      "blank_capital_blocked": true,
+      "unrelated_sheet_content_changes": 0,
+      "formula_errors": 0,
+      "engine": "Artifact authoring and calculation; desktop Microsoft Excel not verified"
+    }
   },
   "javascript": {
-    "views": 8,
+    "views": 9,
     "policy_chart_combinations": 10,
     "independent_calculator_scenarios": 3,
-    "invalid_inputs_rejected": true
+    "invalid_inputs_rejected": true,
+    "blank_drivers_rejected": true,
+    "post_study_comparators": 2
   },
   "pdf": {
-    "paper_pages": 11,
+    "paper_pages": 12,
     "memo_pages": 2,
     "visual_review": "All report and memo pages rendered and reviewed after academic formatting revision",
     "font": "Embedded Times New Roman",
@@ -64,8 +77,8 @@
   },
   "frozen_locked_sha256": "41b2a895595358e68b724dc20c1bec5dbfc93506b98046b80b1a6b4da4e513a1",
   "public_evidence_checks_with_manifest": {
-    "passed": 159,
-    "total": 159
+    "passed": 184,
+    "total": 184
   },
   "reporting_revision": {
     "date": "2026-11-25",
@@ -77,9 +90,36 @@
     "javascript_checks": "8 views, 10 strategy/chart combinations, 3 independent scenarios, invalid inputs rejected",
     "locked_sha256_preserved": "41b2a895595358e68b724dc20c1bec5dbfc93506b98046b80b1a6b4da4e513a1",
     "docx_render": "Bundled LibreOffice; rendered pagination may differ from canonical PDF",
-    "docx_pages_bundled_render": 12,
+    "docx_pages_bundled_render": 13,
     "all_docx_explicit_font_sizes_pt": 12,
     "all_canonical_pdf_visible_text_sizes_pt": 12,
     "report_figures_and_tables_in_word": true
+  },
+  "polish_release": {
+    "version": "0.4.0",
+    "review_date": "2026-11-25",
+    "no_model_refit": true,
+    "original_locked_result_retained": true,
+    "selected_stump_future_mutation_test": "pass",
+    "local_browser": {
+      "views": 9,
+      "comparators": 2,
+      "missing_driver_message": "verified",
+      "console_errors_observed": 0,
+      "mobile_override": "Requested 390px but browser retained 1512px; new mobile layout not independently verified"
+    },
+    "excel_cross_engine": {
+      "engine": "Bundled LibreOffice",
+      "formula_errors": 0,
+      "default_nav": 97918.169238186,
+      "native_sensitivity_base": 97918.169238186,
+      "sensitivity_numeric_check": "Base value matches authoring-engine calculation after native LibreOffice recalculation"
+    },
+    "notebook_display": {
+      "format": "HTML tables and PNG figures generated from SVG calculations",
+      "figures": 6,
+      "currency_markdown_escaped": true,
+      "github_preview": "Pending final recheck after corrected outputs are uploaded"
+    }
   }
 }
