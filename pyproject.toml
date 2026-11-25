@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "systematic-equity-ml-research"
+version = "0.3.0"
+description = "Cost-aware sector ETF allocation research with bounded ML, saved tests and auditable accounting"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.26,<3"]
+[project.optional-dependencies]
+delivery = ["openpyxl>=3.1,<4", "reportlab>=4,<5", "python-docx>=1.1,<2"]
+[tool.setuptools.packages.find]
+where = ["src"]

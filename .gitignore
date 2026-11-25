@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.venv/
+node_modules
+outputs/previews/
+*.inspect.ndjson
+.git/
+data/private/
+artifacts/market/*private*
+outputs/*.log
+deliverables/*.zip
