@@ -1,0 +1,43 @@
+{
+  "release": "0.3.0",
+  "reviewed_on": "2026-11-25",
+  "unit_checks": {
+    "passed": 22,
+    "total": 22
+  },
+  "public_evidence_checks_before_manifest": {
+    "passed": 71,
+    "total": 71
+  },
+  "notebooks": {
+    "count": 8,
+    "code_cells": 31,
+    "execution": "Sequential Python executor",
+    "native_jupyter_kernel": false
+  },
+  "excel": {
+    "sheets": 19,
+    "libreoffice_recalculated": true,
+    "formula_errors": 0,
+    "first_rebalance_nav_difference": 0,
+    "monthly_compounding_max_difference": 3.3306690738754696e-15,
+    "native_microsoft_excel": "Not verified: native open dialog did not enable the file"
+  },
+  "javascript": {
+    "views": 8,
+    "policy_chart_combinations": 10,
+    "independent_calculator_scenarios": 3,
+    "invalid_inputs_rejected": true
+  },
+  "pdf": {
+    "paper_pages": 16,
+    "memo_pages": 2,
+    "visual_review": "Report cover/results and memo rendered; results page inspected"
+  },
+  "browser_review": "Awaiting HTTPS publication; local file navigation was not permitted",
+  "publication": {
+    "repository": "https://github.com/thvh2006/systematic-equity-ml-research",
+    "state": "Repository created; upload pending"
+  },
+  "frozen_locked_sha256": "41b2a895595358e68b724dc20c1bec5dbfc93506b98046b80b1a6b4da4e513a1"
+}

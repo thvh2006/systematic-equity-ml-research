@@ -1,0 +1,50 @@
+{
+  "frozen_at": "2026-11-24T09:09:53.565290+00:00",
+  "chosen_model": "stumps_24",
+  "dataset_sha256": "ac571ded2ec9a2cfd510449a4f7d660f470f5dafcc9f157e8317baf8ad75e276",
+  "code_sha256": "1d0f1d37e3bf490af3352e27f75801ffa3432be1602363cebdc48c894294385a",
+  "config_sha256": "3b0d22fb253f951f70e6edded1370415805988922e532b02dc311aebdfa0bdae",
+  "development_sha256": "272c7166b5f2cb89a330ccdfbfa5a7e9ba5c1ee25b4ec161aa0b4b357dc4a977",
+  "source_commit": "f9bc2c6f3e42ff713153c02d64a732690ea0bce6",
+  "candidate_budget": [
+    {
+      "id": "ridge_0_1",
+      "family": "ridge",
+      "alpha": 0.1
+    },
+    {
+      "id": "ridge_10",
+      "family": "ridge",
+      "alpha": 10
+    },
+    {
+      "id": "ridge_100",
+      "family": "ridge",
+      "alpha": 100
+    },
+    {
+      "id": "enet_0_001",
+      "family": "elastic_net",
+      "alpha": 0.001,
+      "l1_ratio": 0.5
+    },
+    {
+      "id": "enet_0_01",
+      "family": "elastic_net",
+      "alpha": 0.01,
+      "l1_ratio": 0.5
+    },
+    {
+      "id": "stumps_24",
+      "family": "boosted_stumps",
+      "n_estimators": 24,
+      "learning_rate": 0.05
+    }
+  ],
+  "holdout": [
+    "2023-01-01",
+    "2025-12-31"
+  ],
+  "selection": "highest development net daily Sharpe, zero cash benchmark; fixed candidate order breaks ties",
+  "scope": "Retrospective real-data exploratory; frozen evaluation does not cure vintage, selection or execution limits"
+}

@@ -1,0 +1,299 @@
+{
+  "initial_nav": 100000,
+  "fee_bps": 1,
+  "slippage_bps": 5,
+  "participation": 0.01,
+  "signal_date": "2022-12-30",
+  "fill_date": "2023-01-03",
+  "assets": [
+    {
+      "asset": "XLB",
+      "target_weight": 0,
+      "raw_open": 77.8,
+      "raw_close": 77.6,
+      "volume": 2909400.0
+    },
+    {
+      "asset": "XLE",
+      "target_weight": 0.3333333333333333,
+      "raw_open": 86.92,
+      "raw_close": 84.4,
+      "volume": 11330900.0
+    },
+    {
+      "asset": "XLF",
+      "target_weight": 0,
+      "raw_open": 34.45,
+      "raw_close": 34.32,
+      "volume": 24735700.0
+    },
+    {
+      "asset": "XLI",
+      "target_weight": 0,
+      "raw_open": 98.78,
+      "raw_close": 98.42,
+      "volume": 6874400.0
+    },
+    {
+      "asset": "XLK",
+      "target_weight": 0.3333333333333333,
+      "raw_open": 125.76,
+      "raw_close": 123.26,
+      "volume": 4452900.0
+    },
+    {
+      "asset": "XLP",
+      "target_weight": 0,
+      "raw_open": 74.59,
+      "raw_close": 74.27,
+      "volume": 6249900.0
+    },
+    {
+      "asset": "XLU",
+      "target_weight": 0,
+      "raw_open": 70.7,
+      "raw_close": 70.5,
+      "volume": 7350100.0
+    },
+    {
+      "asset": "XLV",
+      "target_weight": 0,
+      "raw_open": 135.96,
+      "raw_close": 135.46,
+      "volume": 6369500.0
+    },
+    {
+      "asset": "XLY",
+      "target_weight": 0.3333333333333333,
+      "raw_open": 129.92,
+      "raw_close": 128.38,
+      "volume": 3765500.0
+    }
+  ],
+  "python_ledger": {
+    "date": "2023-01-03",
+    "opening_cash": 100000.0,
+    "dividend_cash_received": 0.0,
+    "delisting_cash": 0.0,
+    "net_executed_notional_cash": -99926.21813999998,
+    "fees": 9.992621814,
+    "slippage_cost": 49.93814,
+    "traded_notional": 99876.28,
+    "cash": 63.789238186007424,
+    "market_value": 97854.38,
+    "dividend_receivable": 0,
+    "nav": 97918.169238186,
+    "cash_reconciliation": -1.7184476064358023e-11,
+    "holdings": {
+      "XLB": 0.0,
+      "XLE": 383.0,
+      "XLF": 0.0,
+      "XLI": 0.0,
+      "XLK": 265.0,
+      "XLP": 0.0,
+      "XLU": 0.0,
+      "XLV": 0.0,
+      "XLY": 256.0
+    }
+  },
+  "python_trades": [
+    {
+      "signal_date": "2022-12-30",
+      "fill_date": "2023-01-03",
+      "asset": "XLE",
+      "side": "BUY",
+      "requested_quantity": 383.0,
+      "quantity": 383,
+      "raw_open": 86.92,
+      "execution_price": 86.96346,
+      "notional": 33307.00518,
+      "fee": 3.330700518,
+      "slippage_cost": 16.64518,
+      "cash_change": -33310.335880518,
+      "status": "FILLED"
+    },
+    {
+      "signal_date": "2022-12-30",
+      "fill_date": "2023-01-03",
+      "asset": "XLK",
+      "side": "BUY",
+      "requested_quantity": 265.0,
+      "quantity": 265,
+      "raw_open": 125.76,
+      "execution_price": 125.82288,
+      "notional": 33343.0632,
+      "fee": 3.3343063199999996,
+      "slippage_cost": 16.6632,
+      "cash_change": -33346.39750632,
+      "status": "FILLED"
+    },
+    {
+      "signal_date": "2022-12-30",
+      "fill_date": "2023-01-03",
+      "asset": "XLY",
+      "side": "BUY",
+      "requested_quantity": 256.0,
+      "quantity": 256,
+      "raw_open": 129.92,
+      "execution_price": 129.98495999999997,
+      "notional": 33276.14975999999,
+      "fee": 3.327614975999999,
+      "slippage_cost": 16.629759999999997,
+      "cash_change": -33279.47737497599,
+      "status": "FILLED"
+    }
+  ],
+  "capacity": "Prior-session conservative volume proxy",
+  "counterfactuals": {
+    "fee_plus20": {
+      "ledger": {
+        "date": "2023-01-03",
+        "opening_cash": 100000.0,
+        "dividend_cash_received": 0.0,
+        "delisting_cash": 0.0,
+        "net_executed_notional_cash": -99666.24821999998,
+        "fees": 209.29912126199997,
+        "slippage_cost": 49.80822,
+        "traded_notional": 99616.44,
+        "cash": 124.45265873802418,
+        "market_value": 97597.62,
+        "dividend_receivable": 0,
+        "nav": 97722.07265873802,
+        "cash_reconciliation": 3.637978807091713e-12,
+        "holdings": {
+          "XLB": 0.0,
+          "XLE": 383.0,
+          "XLF": 0.0,
+          "XLI": 0.0,
+          "XLK": 265.0,
+          "XLP": 0.0,
+          "XLU": 0.0,
+          "XLV": 0.0,
+          "XLY": 254.0
+        }
+      },
+      "trades": [
+        {
+          "signal_date": "2022-12-30",
+          "fill_date": "2023-01-03",
+          "asset": "XLE",
+          "side": "BUY",
+          "requested_quantity": 383.0,
+          "quantity": 383,
+          "raw_open": 86.92,
+          "execution_price": 86.96346,
+          "notional": 33307.00518,
+          "fee": 69.944710878,
+          "slippage_cost": 16.64518,
+          "cash_change": -33376.949890878,
+          "status": "FILLED"
+        },
+        {
+          "signal_date": "2022-12-30",
+          "fill_date": "2023-01-03",
+          "asset": "XLK",
+          "side": "BUY",
+          "requested_quantity": 265.0,
+          "quantity": 265,
+          "raw_open": 125.76,
+          "execution_price": 125.82288,
+          "notional": 33343.0632,
+          "fee": 70.02043271999999,
+          "slippage_cost": 16.6632,
+          "cash_change": -33413.083632719994,
+          "status": "FILLED"
+        },
+        {
+          "signal_date": "2022-12-30",
+          "fill_date": "2023-01-03",
+          "asset": "XLY",
+          "side": "BUY",
+          "requested_quantity": 256.0,
+          "quantity": 254,
+          "raw_open": 129.92,
+          "execution_price": 129.98495999999997,
+          "notional": 33016.17983999999,
+          "fee": 69.33397766399999,
+          "slippage_cost": 16.49984,
+          "cash_change": -33085.51381766399,
+          "status": "PARTIAL_OR_CASH_CAP"
+        }
+      ]
+    },
+    "nav_double": {
+      "ledger": {
+        "date": "2023-01-03",
+        "opening_cash": 200000.0,
+        "dividend_cash_received": 0.0,
+        "delisting_cash": 0.0,
+        "net_executed_notional_cash": -199852.43627999997,
+        "fees": 19.985243628,
+        "slippage_cost": 99.87628,
+        "traded_notional": 199752.56,
+        "cash": 127.57847637201485,
+        "market_value": 195708.76,
+        "dividend_receivable": 0,
+        "nav": 195836.338476372,
+        "cash_reconciliation": -3.4368952128716046e-11,
+        "holdings": {
+          "XLB": 0.0,
+          "XLE": 766.0,
+          "XLF": 0.0,
+          "XLI": 0.0,
+          "XLK": 530.0,
+          "XLP": 0.0,
+          "XLU": 0.0,
+          "XLV": 0.0,
+          "XLY": 512.0
+        }
+      },
+      "trades": [
+        {
+          "signal_date": "2022-12-30",
+          "fill_date": "2023-01-03",
+          "asset": "XLE",
+          "side": "BUY",
+          "requested_quantity": 766.0,
+          "quantity": 766,
+          "raw_open": 86.92,
+          "execution_price": 86.96346,
+          "notional": 66614.01036,
+          "fee": 6.661401036,
+          "slippage_cost": 33.29036,
+          "cash_change": -66620.671761036,
+          "status": "FILLED"
+        },
+        {
+          "signal_date": "2022-12-30",
+          "fill_date": "2023-01-03",
+          "asset": "XLK",
+          "side": "BUY",
+          "requested_quantity": 530.0,
+          "quantity": 530,
+          "raw_open": 125.76,
+          "execution_price": 125.82288,
+          "notional": 66686.1264,
+          "fee": 6.668612639999999,
+          "slippage_cost": 33.3264,
+          "cash_change": -66692.79501264,
+          "status": "FILLED"
+        },
+        {
+          "signal_date": "2022-12-30",
+          "fill_date": "2023-01-03",
+          "asset": "XLY",
+          "side": "BUY",
+          "requested_quantity": 513.0,
+          "quantity": 512,
+          "raw_open": 129.92,
+          "execution_price": 129.98495999999997,
+          "notional": 66552.29951999999,
+          "fee": 6.655229951999998,
+          "slippage_cost": 33.259519999999995,
+          "cash_change": -66558.95474995198,
+          "status": "PARTIAL_OR_CASH_CAP"
+        }
+      ]
+    }
+  }
+}
