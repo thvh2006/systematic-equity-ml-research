@@ -1,0 +1,7 @@
+model,family,configuration,development_sharpe,development_cagr,selected,locked_evaluated
+ridge_0_1,ridge,"{""id"": ""ridge_0_1"", ""family"": ""ridge"", ""alpha"": 0.1}",0.31476173684669995,0.05035404091195805,False,False
+ridge_10,ridge,"{""id"": ""ridge_10"", ""family"": ""ridge"", ""alpha"": 10}",0.31476173684669995,0.05035404091195805,False,False
+ridge_100,ridge,"{""id"": ""ridge_100"", ""family"": ""ridge"", ""alpha"": 100}",0.32594648768233414,0.05396166291229165,False,False
+enet_0_001,elastic_net,"{""id"": ""enet_0_001"", ""family"": ""elastic_net"", ""alpha"": 0.001, ""l1_ratio"": 0.5}",0.2946900086258612,0.043893748542070954,False,False
+enet_0_01,elastic_net,"{""id"": ""enet_0_01"", ""family"": ""elastic_net"", ""alpha"": 0.01, ""l1_ratio"": 0.5}",0.2585288444312497,0.03158293570131643,False,False
+stumps_24,boosted_stumps,"{""id"": ""stumps_24"", ""family"": ""boosted_stumps"", ""n_estimators"": 24, ""learning_rate"": 0.05}",0.46200289458150773,0.09974214164908579,True,True
