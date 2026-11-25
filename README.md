@@ -31,7 +31,7 @@ Fund-level contribution differences reconcile these gaps, but combine holdings, 
 | [Two-page decision memo](deliverables/P2_Decision_Memo.pdf) | Decision and implementation conditions |
 | [Excel review](deliverables/P2_Systematic_Equity_Research.xlsx) | 19 sheets; formula-linked comparator and fund bridge, relative-wealth chart, first-rebalance formulas and native fee/slippage sensitivity |
 | [Interactive dashboard](https://thvh2006.github.io/systematic-equity-ml-research/) | Nine views, including an interactive explanation of the ML shortfall, fund-contribution differences and independent execution scenarios |
-| [Eight research notebooks](notebooks) | Executed questions, HTML tables, SVG figures and interpretations from source audit to stale-data controls |
+| [Eight research notebooks](notebooks) | Executed questions, HTML tables, rendered figures and interpretations from source audit to stale-data controls |
 | [Attribution](artifacts/research/sector_attribution.csv) · [Trial register](reports/plan/trial_register.csv) | All six candidates and fund-level P&L contribution |
 | [Protocol](docs/PROTOCOL_FREEZE.md) · [Sources](docs/SOURCES_AND_LIMITATIONS.md) · [Model card](docs/MODEL_CARD.md) | What was frozen, assumptions and appropriate interpretation |
 

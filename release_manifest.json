@@ -25,8 +25,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "e4778fa3a02920ef30c87d31ef913e225ff67cb3fbb77b907fd87e93d914ad8f",
-      "bytes": 8678
+      "sha256": "d2e83e0b553ab18cf7d4945d875ad1a247ff9e3143aca7fc05f9d780307e6c1a",
+      "bytes": 8683
     },
     {
       "path": "artifacts/paper/events.jsonl",
@@ -72,6 +72,36 @@
       "path": "artifacts/research/sector_attribution.csv",
       "sha256": "5a1a96eae4e06ad5f2b9eee332bb7bc1a0ecb74a547ccf91fe5c29dec15f4fd7",
       "bytes": 2087
+    },
+    {
+      "path": "artifacts/review/figures/2295b7f0eaf0159f8920b749275278578fae8816f29e7a565b1730a70948205c.png",
+      "sha256": "7e550aa84b181b0ca18f3ebf2d218db00247f1f0b03013c719cfc48be683a461",
+      "bytes": 43835
+    },
+    {
+      "path": "artifacts/review/figures/4c430f38700b8462b56aee02fda1baaa4f8bcfa49f32f5f5327e596677a352db.png",
+      "sha256": "f60280aba49c2fb867a0059854cd141552118f21b799bd48efd52a1db8929585",
+      "bytes": 36166
+    },
+    {
+      "path": "artifacts/review/figures/67e88e029e2e17a502a89648950d4006bf5e9b8a2aa5ed749b54925a0167c0e9.png",
+      "sha256": "0a055944ec7237f113c752a6e526eb3ccfd220e5686bfeb734f8d8f141e642fa",
+      "bytes": 90449
+    },
+    {
+      "path": "artifacts/review/figures/6859943581d98b73f2952ab9d28da3e44c1d0e6efcaa173d38f79f05b3ea993a.png",
+      "sha256": "3bf4592730e2ab0d566519c2efd57798f07874d0354202dc311e699c43b2d16d",
+      "bytes": 42033
+    },
+    {
+      "path": "artifacts/review/figures/de18620643f116bfcb8c4090d35d91f65b28ef99a31454710d86e9e0df82d5fa.png",
+      "sha256": "30476fb474f3f6547ef66a5872022f783261deddcdfec2c1853e8c215a597d94",
+      "bytes": 129487
+    },
+    {
+      "path": "artifacts/review/figures/e490a2b65617e404878137b58c78384f49a61a321ad93a321a8c7b4be270fcc1.png",
+      "sha256": "ee90be736dc1ebc0cedd6339a604fd11f22f9d7d7f29c83a30b3754fe2c12156",
+      "bytes": 41304
     },
     {
       "path": "artifacts/review/polish.json",
@@ -185,8 +215,8 @@
     },
     {
       "path": "docs/RELEASE_NOTES.md",
-      "sha256": "d16bb66cc0026d3821c7dcd173b57b340e53d3eb8fd31bf680d666a53446872b",
-      "bytes": 3028
+      "sha256": "f46c4c3e80334bf4aa174207873e6da9b63931c5f498451f6469fc4aef94a39b",
+      "bytes": 3504
     },
     {
       "path": "docs/RELEASE_STATUS.md",
@@ -225,18 +255,18 @@
     },
     {
       "path": "notebooks/02_hypotheses_labels_and_features.ipynb",
-      "sha256": "5169a4f1ea6f2a7229b58dd018d02699a4cc5e3c110e3b193c5b0ed7508e7f04",
-      "bytes": 11487
+      "sha256": "46af735a634af3841b5adead9f464c3456261b340a9a6d1411329e306093a522",
+      "bytes": 68442
     },
     {
       "path": "notebooks/03_baseline_strategy_research.ipynb",
-      "sha256": "f200cfa42a2fbae68b905800cb53653ffd6a8d774531b2edffdb9b4e6e734a9f",
-      "bytes": 40409
+      "sha256": "48efc634f21aa1a6df062f770c7f824eb376cc51cef59a00f745c7bbcb606039",
+      "bytes": 129120
     },
     {
       "path": "notebooks/04_temporal_ml_validation.ipynb",
-      "sha256": "3232ca7535f3b0e31bb61a833215eff6176bc6bf9682c6642e686f5d00d487a6",
-      "bytes": 10402
+      "sha256": "5881ecaefad19872c629e43b14be0a59b660d2ee986b95f129974969cfbe880e",
+      "bytes": 57624
     },
     {
       "path": "notebooks/05_portfolio_and_execution.ipynb",
@@ -245,13 +275,13 @@
     },
     {
       "path": "notebooks/06_robustness_and_multiple_testing.ipynb",
-      "sha256": "0ab6922dd1914cb3d041344a9f5e13ff5cb73c10ac3645fd2f3ea78780de8bb9",
-      "bytes": 9138
+      "sha256": "901864988e7d2632ea3a730026ef13385339379d731fc213d8785313555a8a4a",
+      "bytes": 62800
     },
     {
       "path": "notebooks/07_locked_test_and_attribution.ipynb",
-      "sha256": "d7714d66a7e340f754352f51a7537a65db12d076c78b17cb08d06ffa321cda29",
-      "bytes": 33555
+      "sha256": "4ae211193fa61358a90a9ce550eb7fd4e0931720ef9dae4c54020a1fbed64b25",
+      "bytes": 237472
     },
     {
       "path": "notebooks/08_forward_paper_monitor.ipynb",
@@ -335,8 +365,8 @@
     },
     {
       "path": "scripts/build_review_notebooks.py",
-      "sha256": "af5c72e44a655abb3b7b3edbd5535cff9fbc016656384055e1ff322c0743ba5e",
-      "bytes": 15887
+      "sha256": "70dae32f043d143a8d03a2f36f78c8e14b327259781d5d8500c5c0c8cf9c3d09",
+      "bytes": 15906
     },
     {
       "path": "scripts/build_workbook.mjs",
@@ -394,9 +424,14 @@
       "bytes": 4498
     },
     {
+      "path": "scripts/render_notebook_figures.mjs",
+      "sha256": "661a2db4c0ecd87c2d244c92d723a53bd1d77199eeeb79d9a9f9d68078ea8f02",
+      "bytes": 890
+    },
+    {
       "path": "scripts/review_visuals.py",
-      "sha256": "e3e920ceb0d5c3a927de7b277845b476ebc661830846b113e867b16cd1e2427c",
-      "bytes": 2766
+      "sha256": "84d855ea31ccb48ca600c986bfda7526115185267e327e6152509131ab1c386a",
+      "bytes": 3042
     },
     {
       "path": "scripts/run_all.py",
