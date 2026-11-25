@@ -1,0 +1,17 @@
+{
+  "mode": "synthetic_fixture",
+  "seed": 20261124,
+  "label_horizon_sessions": 21,
+  "embargo_sessions": 1,
+  "first_evaluation_session": 210,
+  "ridge_alpha": 10.0,
+  "top_k": 3,
+  "max_target_weight": 0.35,
+  "initial_nav": 100000.0,
+  "fee_bps": 10.0,
+  "slippage_bps": 5.0,
+  "max_volume_participation": 0.01,
+  "cost_multipliers": [1, 2, 3],
+  "model_selection": "No tuning or promotion. Fixed specifications exercise the fixture pipeline.",
+  "locked_test": "NOT_RUN: approved market-data snapshot required"
+}
